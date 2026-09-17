@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Arcus Mons AI Systems — site stylesheet
+   Arcus Mons Bookkeeping Services — site stylesheet
    Palette and type sampled from "Arcus Mons AI Systems V1.5.pptx"
    ========================================================================== */
 
@@ -565,6 +565,10 @@ a, button, summary, [role="button"] {
 .hero h1 { color: var(--white); margin-bottom: .45em; }
 .hero h1 .accent { color: var(--blue-300); display: block; }
 
+/* The base rule paints <strong> navy, which is invisible on the navy hero.
+   .section--navy has its own override; .hero is not one, so it needs this. */
+.hero strong { color: var(--white); }
+
 .hero-lede {
   font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
   color: var(--blue-200);
@@ -605,18 +609,18 @@ a, button, summary, [role="button"] {
   border-radius: 50%;
   background: rgba(143, 180, 214, .5);
 }
-/* Below ~560px the five labels no longer share a line. Left to wrap, flex
-   breaks them 4 + 1 and strands "Support" on its own, so place them on an
-   explicit 3 + 2 grid instead — the break then reads as intentional. The
-   separator on the third item would dangle at the row's end, so it goes. */
-@media (max-width: 560px) {
+/* Below ~620px the four labels no longer share a line. Left to wrap, flex
+   breaks them 3 + 1 and strands the last one on its own, so place them on an
+   explicit 2 + 2 grid instead — the break then reads as intentional. The
+   separator on the second item would dangle at the row's end, so it goes. */
+@media (max-width: 620px) {
   .hero-capabilities {
     display: grid;
-    grid-template-columns: repeat(3, max-content);
+    grid-template-columns: repeat(2, max-content);
     justify-content: start;
     gap: .55rem .9rem;
   }
-  .hero-capabilities li:nth-child(3)::after { display: none; }
+  .hero-capabilities li:nth-child(2)::after { display: none; }
 }
 /* The narrowest phones need the labels a shade tighter to hold that grid. */
 @media (max-width: 380px) {
@@ -650,13 +654,27 @@ a, button, summary, [role="button"] {
   background: #6fcf97;
   box-shadow: 0 0 0 3px rgba(111, 207, 151, .18);
 }
-/* Capped so the product shot does not dominate once the hero stacks — but
-   min() keeps the cap from beating the base img{max-width:100%} on a phone,
-   where a flat 420px pushed the shot outside the panel and got clipped. */
-.hero-panel img {
-  margin: 0 auto;
-  max-width: min(420px, 100%);
-  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, .42));
+/* The list of what lands in the client's inbox each month. Sits between the
+   panel label and the .hero-specs strip, both of which carry their own
+   margins — so this one adds none of its own. */
+.hero-deliverables {
+  list-style: none;
+  display: grid;
+  gap: .8rem;
+  margin: 0;
+}
+.hero-deliverables li {
+  display: flex;
+  gap: .65rem;
+  align-items: flex-start;
+  font-size: .9375rem;
+  line-height: 1.5;
+  color: var(--blue-200);
+}
+.hero-deliverables svg {
+  flex: 0 0 auto;
+  margin-top: .3rem;
+  color: #6fcf97;
 }
 
 .hero-specs {
@@ -920,7 +938,7 @@ a, button, summary, [role="button"] {
   color: var(--blue-200);
 }
 
-.offline-badge {
+.pill-badge {
   display: inline-flex;
   align-items: flex-start;
   gap: .55rem;
@@ -933,7 +951,7 @@ a, button, summary, [role="button"] {
   font-size: .875rem;
   font-weight: 600;
 }
-.offline-badge svg { flex: 0 0 auto; margin-top: .18rem; }
+.pill-badge svg { flex: 0 0 auto; margin-top: .18rem; }
 
 /* --------------------------------------------------------------------------
    10. Process
@@ -1008,7 +1026,189 @@ a, button, summary, [role="button"] {
 @media (max-width: 600px) { .faq-answer { padding-right: .25rem; } }
 
 /* --------------------------------------------------------------------------
-   12. Final CTA
+   12. Pricing
+   -------------------------------------------------------------------------- */
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.4vw, 1.75rem);
+  align-items: stretch;
+}
+/* One column below 900px — but capped and centred, so a single card does not
+   stretch to the full 1160px wrap on a tablet. */
+@media (max-width: 900px) {
+  .pricing {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+}
+
+.price-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 2.6vw, 2rem);
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease),
+              border-color .22s var(--ease);
+}
+.price-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--blue-300);
+}
+
+/* The middle card carries the recommendation: a navy edge and a little more
+   lift, rather than a different size — equal heights keep the row scannable. */
+.price-card--featured {
+  border-color: var(--navy-800);
+  box-shadow: var(--shadow-md);
+}
+.price-card--featured:hover { border-color: var(--navy-800); }
+
+.price-flag {
+  align-self: flex-start;
+  margin: 0 0 .9rem;
+  padding: .3rem .7rem;
+  border-radius: 999px;
+  background: var(--navy-800);
+  color: var(--white);
+  font-size: .625rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.price-tier {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--blue-500);
+  margin-bottom: .6rem;
+}
+
+.price-amount {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--navy-800);
+  margin-bottom: .3rem;
+  /* A "$[PLACEHOLDER]" amount is far wider than "$50"; let it break rather
+     than push the card wider than its column. */
+  overflow-wrap: anywhere;
+}
+.price-amount .currency {
+  font-size: .5em;
+  vertical-align: .55em;
+  margin-right: .06em;
+  font-weight: 600;
+}
+
+.price-period {
+  font-size: .875rem;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin-bottom: 1.1rem;
+}
+
+.price-desc {
+  font-size: .9375rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.25rem;
+}
+
+.price-features {
+  list-style: none;
+  display: grid;
+  gap: .7rem;
+  margin: 0 0 1.75rem;
+}
+.price-features li {
+  display: flex;
+  gap: .65rem;
+  align-items: flex-start;
+  font-size: .9375rem;
+  line-height: 1.5;
+}
+.price-features svg {
+  flex: 0 0 auto;
+  margin-top: .3rem;
+  color: var(--blue-500);
+}
+
+/* margin-top:auto pins the button to the bottom of the tallest card, so the
+   three calls to action line up however long the feature lists run. */
+.price-foot { margin-top: auto; }
+.price-foot .btn { width: 100%; }
+
+.price-aside {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: 1px dashed var(--sand);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, .55);
+  text-align: center;
+}
+.price-aside h3 { font-size: 1.125rem; margin-bottom: .4rem; }
+.price-aside p {
+  max-width: 44rem;
+  margin-inline: auto;
+  font-size: .9375rem;
+}
+
+/* --------------------------------------------------------------------------
+   13. Testimonials
+   -------------------------------------------------------------------------- */
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.4vw, 1.75rem);
+}
+@media (max-width: 900px) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .quotes { grid-template-columns: minmax(0, 1fr); } }
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: var(--cream);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 2.6vw, 2rem);
+}
+.quote blockquote {
+  margin: 0 0 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--navy-700);
+}
+.quote blockquote::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--blue-300);
+  margin-bottom: 1rem;
+}
+.quote figcaption {
+  margin-top: auto;
+  font-size: .8125rem;
+  letter-spacing: .04em;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   14. Final CTA
    -------------------------------------------------------------------------- */
 .cta {
   position: relative;
@@ -1055,7 +1255,7 @@ a, button, summary, [role="button"] {
 .cta-meta a { color: var(--blue-300); }
 
 /* --------------------------------------------------------------------------
-   13. Footer
+   15. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
   background: var(--navy-900);
@@ -1123,7 +1323,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   14. Back to top
+   16. Back to top
    -------------------------------------------------------------------------- */
 .to-top {
   position: fixed;
@@ -1152,7 +1352,7 @@ a, button, summary, [role="button"] {
 .to-top:hover { background: var(--blue-500); }
 
 /* --------------------------------------------------------------------------
-   15. Legal / content pages
+   17. Legal / content pages
    -------------------------------------------------------------------------- */
 .page-header {
   background: var(--navy-800);
@@ -1182,7 +1382,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   16. Utilities & motion
+   18. Utilities & motion
    -------------------------------------------------------------------------- */
 .visually-hidden {
   position: absolute !important;
@@ -1217,7 +1417,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   17. Print
+   19. Print
    -------------------------------------------------------------------------- */
 @media print {
   .site-header, .to-top, .nav-toggle, .skip-link { display: none !important; }
@@ -1229,9 +1429,11 @@ a, button, summary, [role="button"] {
     color: #000 !important;
   }
   .hero h1, .hero .accent, .section--navy h2, .section--navy h3, .section--navy .lede,
-  .cta h2, .cta-phone, .page-header h1, .page-header p, .node, .server-list li {
+  .cta h2, .cta-phone, .page-header h1, .page-header p, .node, .server-list li,
+  .hero-deliverables li {
     color: #000 !important;
   }
-  .card, .path-step { box-shadow: none; break-inside: avoid; }
+  .price-flag { background: #fff !important; color: #000 !important; border: 1px solid #000; }
+  .card, .path-step, .price-card, .quote { box-shadow: none; break-inside: avoid; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }

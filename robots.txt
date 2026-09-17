@@ -1,4 +1,4 @@
-# robots.txt — Arcus Mons AI Systems
+# robots.txt — Arcus Mons Bookkeeping Services
 # PLACEHOLDER: update the Sitemap URL when the real domain is live.
 
 User-agent: *
