@@ -30,10 +30,11 @@ These are real values, already wired in across every page:
 `index.html`, `privacy.html` and `terms.html`; the line under the closing call-to-action
 on `index.html`; and the `openingHoursSpecification` block in the structured data.
 
-**Nationwide coverage appears in seven places.** The hero specs strip (`50 / States
-served`), the stats band, the "Where you are" panel and its badge, the FAQ, the closing
+**Nationwide coverage appears in six places, on purpose.** The hero specs strip (`50 /
+States served`), the "Where you are" panel and its badge, the FAQ, the closing
 call-to-action line, the footer Contact column on all three pages, and the `areaServed`
-block in the structured data.
+block in the structured data. This is the one message the page repeats deliberately — a
+visitor outside Utah must not be able to miss it.
 
 ---
 
@@ -56,17 +57,13 @@ Search every file for **`[PLACEHOLDER`** to find them. As of the last edit:
 ### Elsewhere on `index.html`
 
 - **Software migration card** — which platforms you migrate from and to.
-- **Plain-language reporting card** — whether the monthly written note is included or an add-on.
 - **Onboarding step (02)** — typical onboarding time.
-- **Monthly rhythm step (03)** — which day statements land.
+- **Every month after, step (03)** — which day statements land.
 - **FAQ: accounting software** — the platforms you support (QuickBooks Online, Xero, Wave, …).
 - **FAQ: taxes** — whether you also prepare and file returns, and for which entity types.
 - **FAQ: documents** — the name of your portal or file-sharing tool.
 - **FAQ: contracts** — your actual terms (month-to-month? notice period? who keeps the file?).
 - **FAQ: security** — the specifics you are willing to publish (MFA, encryption, insurance, bonding).
-- **Testimonials** — all three quotes and all three attributions. Replace them with real,
-  attributed quotes, or **delete the whole `<section>`**. It is marked with a comment
-  saying exactly that. Do not launch with the placeholder quotes visible.
 
 ### On the legal pages
 
@@ -98,26 +95,48 @@ time, because those were not supplied — if you want them, add them.
 
 ## 3. What is on the page
 
-`index.html` is one scrolling page, in this order:
+`index.html` is one scrolling page — **eight sections**, each answering a question the
+page has not already answered:
 
-1. **Hero** — the promise, the price, both calls to action, and the monthly deliverables panel
-2. **Where this starts** — bookkeeping is the work that waits; the $50 / 50 states / 100% remote strip
-3. **How it goes wrong** — the four-step cost of falling behind
-4. **How It Works** — what you send → the monthly close → and the "Where you are" nationwide panel
-5. **Services** — the six things we do every month
-6. **More than a close** — catch-up, setup, migration, reporting
-7. **Pricing** — three tiers plus the catch-up aside
-8. **Testimonials** — placeholder quotes (delete or replace)
-9. **Getting started** — the call, onboarding, the monthly rhythm
-10. **FAQ** — eight questions, native `<details>` accordions
-11. **Closing call-to-action** — the phone number, large
+| # | Section | The question it answers |
+|---|---|---|
+| 1 | **Hero** (navy) | What is this, what does it cost, what do I get each month? |
+| 2 | **Where this starts** (cream) | Why does this matter — what happens if I keep putting it off? |
+| 3 | **How It Works** (navy) | What do I send, what do you do with it, and do you cover my state? |
+| 4 | **Services** (white) | What exactly is included each month — and what about getting started from a mess? |
+| 5 | **Pricing** (cream) | What will I actually pay? |
+| 6 | **Getting started** (white) | What happens after I call? |
+| 7 | **FAQ** (cream) | The seven objections the page does not answer above. |
+| 8 | **Call to action** (navy) | How do I reach you? |
 
-The nav mirrors the sections that sell: How It Works · Services · Pricing · FAQ, plus a
-phone button visible at every scroll position.
+The nav mirrors the four that sell: How It Works · Services · Pricing · FAQ, plus a phone
+button visible at every scroll position.
 
-**Sections alternate cream → white → cream** so no two neighbouring bands share a
-background, with navy reserved for the hero, How It Works, the closing call-to-action and
-the footer. If you add or remove a section, keep that alternation going.
+**Sections alternate** so no two neighbouring bands share a background — navy, cream,
+navy, white, cream, white, cream, navy. If you add or remove a section, keep that going.
+
+### The editing rule for this page
+
+The page is deliberately short, and it got there by cutting. **Before adding anything, check
+whether the fact is already stated somewhere above it.** Three earlier sections were removed
+for saying things the page already said:
+
+- a stats band whose three figures (`$50` / `50 states` / `100% remote`) were a literal
+  copy of the strip in the hero panel;
+- a separate "how it goes wrong" section, now merged into **Where this starts**;
+- a separate "beyond the monthly close" section, now the second block inside **Services**,
+  under a `.subhead` divider;
+- a **testimonials** section built entirely from placeholder quotes — it carried no
+  information and would have been a liability if it went live unfilled. If you get real,
+  attributed client quotes, that is worth adding back as its own white band between
+  Pricing and Getting started. Until then, do not.
+
+A hero "capabilities" strip was also dropped: it listed the same four words as the
+Services headings, two screens below.
+
+Some repetition is correct and deliberate. The phone number appears six times, `$50`
+appears wherever price is relevant, and **"all 50 states" appears eight times** — nationwide
+coverage is the single thing a visitor most needs to not miss. Do not thin those out.
 
 ---
 
@@ -172,14 +191,21 @@ from Google Fonts; if you would rather not depend on that (it is disclosed in th
 policy), download the two families into `assets/fonts/`, add `@font-face` rules, and
 delete the three `<link>` tags in each page's `<head>`.
 
-**Stylesheet sections**, in order: tokens, reset, layout primitives, buttons, header,
-hero, stats, cards, the how-it-works diagram, process, FAQ, **pricing**, **testimonials**,
-final CTA, footer, back-to-top, legal pages, utilities, print.
+**Stylesheet sections**, numbered in order: tokens, reset, layout primitives, buttons,
+header, hero, cards, the how-it-works diagram, process, FAQ, pricing, final CTA, footer,
+back-to-top, legal pages, utilities, print.
 
-A few utility classes are defined but currently unused — `.grid--2`, `.section--mist`,
-`.section--tight`, `.stat-src`, `.text-center`, `.visually-hidden`. They are kept on
-purpose: `.stat-src`, for instance, is the caption style you would want if you ever swap
-the stats band for cited industry statistics.
+The stylesheet was trimmed alongside the page — the `.stats`, `.quote`/`.quotes` and
+`.hero-capabilities` rules were deleted when their sections were, rather than left as dead
+weight. If you bring testimonials back, the old `.quote` styles are in git history.
+
+`.subhead` is the one component added for conciseness: it puts a second heading and rule
+inside an existing section, which is what lets **Services** carry both the monthly work and
+the one-off work without spending a whole extra band on the smaller of the two.
+
+Four utility classes remain defined but unused — `.grid--2`, `.section--mist`,
+`.section--tight`, `.text-center`, `.visually-hidden`. They are cheap and generic; keep or
+delete as you like.
 
 ---
 
@@ -228,17 +254,19 @@ The questions live in **two** places in `index.html`: the visible `<details>` bl
 the `FAQPage` JSON-LD block near the bottom of the file. Update both, or the structured
 data will describe a page that no longer exists.
 
-The JSON-LD deliberately carries **five** of the eight questions, and no bracketed
+The JSON-LD deliberately carries **five of the seven** questions, and no bracketed
 placeholder text appears anywhere in it — you do not want `[PLACEHOLDER: …]` showing up in
 a Google search result. The split:
 
-- **Three answers are clean** (cost, Utah, behind on the books) and appear in the JSON-LD
-  word for word.
-- **Two** (taxes, documents) appear in the JSON-LD with their trailing placeholder
-  sentence trimmed off, so the structured-data version is a shortened form of what the
-  page shows.
-- **Three are omitted** (software, contracts, security) because their answers are mostly
-  placeholder and there is nothing useful to publish yet.
+- **Two answers are clean** (which tier, Utah) and appear in the JSON-LD word for word.
+- **Three** (taxes, documents, security) appear in the JSON-LD with their trailing
+  placeholder sentence trimmed off, so the structured-data version is a shortened form of
+  what the page shows.
+- **Two are omitted** (accounting software, contracts) because their answers are almost
+  entirely placeholder and there is nothing useful to publish yet.
 
-Once you have filled those answers in, add the missing three to the JSON-LD, and restore
-the trimmed sentences to the two shortened ones so both copies match again.
+Once you have filled those answers in, add the missing two to the JSON-LD, and restore the
+trimmed sentences to the three shortened ones so both copies match again.
+
+The FAQ is deliberately short. Questions the page answers in the body — what it costs in
+detail, what catch-up work involves — were removed from here rather than asked twice.

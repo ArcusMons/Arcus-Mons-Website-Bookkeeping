@@ -588,46 +588,6 @@ a, button, summary, [role="button"] {
 }
 .hero-reassure svg { color: var(--blue-300); flex: 0 0 auto; margin-top: .28rem; }
 
-.hero-capabilities {
-  margin-top: clamp(2.5rem, 5vw, 3.5rem);
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(143, 180, 214, .22);
-  display: flex;
-  flex-wrap: wrap;
-  gap: .6rem .9rem;
-  list-style: none;
-  font-size: .75rem;
-  font-weight: 700;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--blue-300);
-}
-.hero-capabilities li { display: flex; align-items: center; gap: .9rem; }
-.hero-capabilities li:not(:last-child)::after {
-  content: "";
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: rgba(143, 180, 214, .5);
-}
-/* Below ~620px the four labels no longer share a line. Left to wrap, flex
-   breaks them 3 + 1 and strands the last one on its own, so place them on an
-   explicit 2 + 2 grid instead — the break then reads as intentional. The
-   separator on the second item would dangle at the row's end, so it goes. */
-@media (max-width: 620px) {
-  .hero-capabilities {
-    display: grid;
-    grid-template-columns: repeat(2, max-content);
-    justify-content: start;
-    gap: .55rem .9rem;
-  }
-  .hero-capabilities li:nth-child(2)::after { display: none; }
-}
-/* The narrowest phones need the labels a shade tighter to hold that grid. */
-@media (max-width: 380px) {
-  .hero-capabilities { font-size: .6875rem; letter-spacing: .06em; gap: .5rem .7rem; }
-  .hero-capabilities li { gap: .6rem; }
-}
-
 /* Hero product panel */
 .hero-panel {
   position: relative;
@@ -717,39 +677,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   7. Stats
-   -------------------------------------------------------------------------- */
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
-@media (max-width: 860px) { .stats { grid-template-columns: minmax(0, 1fr); } }
-
-.stat {
-  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 2.25rem);
-  border-left: 1px solid var(--rule);
-}
-.stat:first-child { border-left: 0; padding-left: 0; }
-@media (max-width: 860px) {
-  .stat { border-left: 0; border-top: 1px solid var(--rule); padding-inline: 0; }
-  .stat:first-child { border-top: 0; padding-top: 0; }
-}
-.stat-num {
-  font-family: var(--font-serif);
-  font-size: clamp(2.75rem, 6vw, 3.9rem);
-  font-weight: 700;
-  line-height: 1;
-  color: var(--navy-800);
-  letter-spacing: -.02em;
-  margin-bottom: .55rem;
-}
-.stat-text { font-size: 1rem; color: var(--slate); margin-bottom: .75rem; }
-.stat-src {
-  font-size: .75rem;
-  letter-spacing: .04em;
-  color: var(--muted);
-  margin: 0;
-}
-
-/* --------------------------------------------------------------------------
-   8. Cards
+   7. Cards
    -------------------------------------------------------------------------- */
 .card {
   background: var(--white);
@@ -825,6 +753,23 @@ a, button, summary, [role="button"] {
 .path-step:last-child::after { display: none; }
 @media (max-width: 900px) { .path-step::after { display: none; } }
 
+/* A second heading inside an existing section — lets one section carry two
+   related blocks (the monthly work, then the one-off work) instead of
+   spending a whole new band on the smaller of the two. */
+.subhead {
+  max-width: 46rem;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  padding-top: clamp(1.75rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--rule);
+  margin-bottom: clamp(1.75rem, 3vw, 2.25rem);
+}
+.subhead h3 {
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  margin-bottom: .4rem;
+}
+.subhead p { margin: 0; font-size: .9375rem; }
+.section--navy .subhead { border-top-color: rgba(143, 180, 214, .25); }
+
 /* Feature rows (icon + text) */
 .feature { display: flex; gap: 1.1rem; align-items: flex-start; }
 .feature .icon { flex: 0 0 46px; margin-bottom: 0; }
@@ -832,7 +777,7 @@ a, button, summary, [role="button"] {
 .feature p { font-size: .9375rem; margin-bottom: 0; }
 
 /* --------------------------------------------------------------------------
-   9. Architecture diagram
+   8. Architecture diagram
    -------------------------------------------------------------------------- */
 .arch {
   display: grid;
@@ -954,7 +899,7 @@ a, button, summary, [role="button"] {
 .pill-badge svg { flex: 0 0 auto; margin-top: .18rem; }
 
 /* --------------------------------------------------------------------------
-   10. Process
+   9. Process
    -------------------------------------------------------------------------- */
 .process { counter-reset: phase; list-style: none; display: grid; gap: 0; }
 .process-item {
@@ -983,7 +928,7 @@ a, button, summary, [role="button"] {
 .process + .section-note { border-top: 0; padding-top: 0; }
 
 /* --------------------------------------------------------------------------
-   11. FAQ
+   10. FAQ
    -------------------------------------------------------------------------- */
 .faq { max-width: 52rem; margin-inline: auto; }
 .faq-item { border-bottom: 1px solid var(--rule); }
@@ -1026,7 +971,7 @@ a, button, summary, [role="button"] {
 @media (max-width: 600px) { .faq-answer { padding-right: .25rem; } }
 
 /* --------------------------------------------------------------------------
-   12. Pricing
+   11. Pricing
    -------------------------------------------------------------------------- */
 .pricing {
   display: grid;
@@ -1165,50 +1110,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   13. Testimonials
-   -------------------------------------------------------------------------- */
-.quotes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.4vw, 1.75rem);
-}
-@media (max-width: 900px) { .quotes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 600px) { .quotes { grid-template-columns: minmax(0, 1fr); } }
-
-.quote {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  background: var(--cream);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 2.6vw, 2rem);
-}
-.quote blockquote {
-  margin: 0 0 1.1rem;
-  font-family: var(--font-serif);
-  font-size: 1.0625rem;
-  font-style: italic;
-  line-height: 1.55;
-  color: var(--navy-700);
-}
-.quote blockquote::before {
-  content: "";
-  display: block;
-  width: 28px;
-  height: 2px;
-  background: var(--blue-300);
-  margin-bottom: 1rem;
-}
-.quote figcaption {
-  margin-top: auto;
-  font-size: .8125rem;
-  letter-spacing: .04em;
-  color: var(--muted);
-}
-
-/* --------------------------------------------------------------------------
-   14. Final CTA
+   12. Final CTA
    -------------------------------------------------------------------------- */
 .cta {
   position: relative;
@@ -1255,7 +1157,7 @@ a, button, summary, [role="button"] {
 .cta-meta a { color: var(--blue-300); }
 
 /* --------------------------------------------------------------------------
-   15. Footer
+   13. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
   background: var(--navy-900);
@@ -1323,7 +1225,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   16. Back to top
+   14. Back to top
    -------------------------------------------------------------------------- */
 .to-top {
   position: fixed;
@@ -1352,7 +1254,7 @@ a, button, summary, [role="button"] {
 .to-top:hover { background: var(--blue-500); }
 
 /* --------------------------------------------------------------------------
-   17. Legal / content pages
+   15. Legal / content pages
    -------------------------------------------------------------------------- */
 .page-header {
   background: var(--navy-800);
@@ -1382,7 +1284,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   18. Utilities & motion
+   16. Utilities & motion
    -------------------------------------------------------------------------- */
 .visually-hidden {
   position: absolute !important;
@@ -1417,7 +1319,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   19. Print
+   17. Print
    -------------------------------------------------------------------------- */
 @media print {
   .site-header, .to-top, .nav-toggle, .skip-link { display: none !important; }
@@ -1434,6 +1336,6 @@ a, button, summary, [role="button"] {
     color: #000 !important;
   }
   .price-flag { background: #fff !important; color: #000 !important; border: 1px solid #000; }
-  .card, .path-step, .price-card, .quote { box-shadow: none; break-inside: avoid; }
+  .card, .path-step, .price-card { box-shadow: none; break-inside: avoid; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }
