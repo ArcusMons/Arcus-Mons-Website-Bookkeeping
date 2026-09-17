@@ -1,0 +1,7 @@
+# robots.txt — Arcus Mons AI Systems
+# PLACEHOLDER: update the Sitemap URL when the real domain is live.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.arcusmons.com/sitemap.xml

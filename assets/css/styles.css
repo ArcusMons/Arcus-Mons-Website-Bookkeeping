@@ -1,0 +1,1237 @@
+/* ==========================================================================
+   Arcus Mons AI Systems — site stylesheet
+   Palette and type sampled from "Arcus Mons AI Systems V1.5.pptx"
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand colours (sampled from the deck) */
+  --navy-900: #0b1e30;
+  --navy-800: #102a43;
+  --navy-700: #1b3a5a;
+  --navy-600: #2a4c6e;
+  --blue-500: #2f5f87;
+  --blue-300: #8fb4d6;
+  --blue-200: #a9b8c7;
+  --cream:    #faf7ef;
+  --sand:     #ddd8cb;
+  --mist:     #f1f3f6;
+  --line:     #d3dae2;
+  --slate:    #55606c;
+  --muted:    #78838f;
+  --white:    #ffffff;
+
+  /* Semantic */
+  --bg: var(--cream);
+  --text: var(--slate);
+  --heading: var(--navy-800);
+  --rule: var(--line);
+
+  /* Type */
+  --font-serif: "Source Serif 4", Cambria, Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3", Calibri, "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  /* Rhythm */
+  --wrap: 1160px;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section-y: clamp(4rem, 9vw, 7.5rem);
+  --radius: 4px;
+  --radius-lg: 8px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(16, 42, 67, .06), 0 2px 8px rgba(16, 42, 67, .05);
+  --shadow-md: 0 2px 4px rgba(16, 42, 67, .06), 0 12px 28px rgba(16, 42, 67, .09);
+  --shadow-lg: 0 4px 10px rgba(16, 42, 67, .08), 0 24px 60px rgba(16, 42, 67, .14);
+
+  --header-h: 74px;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+
+  /* Non-zero only where the page actually runs under system UI (installed to
+     the home screen); 0 in normal browsing, so these rules cost nothing. */
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset / base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  scroll-padding-top: calc(var(--header-h) + var(--safe-top) + 16px);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+  /* Sticky footer: short pages (404) still paint their footer at the bottom
+     of the screen instead of leaving a band of page background below it. */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+body > main { flex: 1 0 auto; display: flex; flex-direction: column; }
+body > .site-footer { flex-shrink: 0; }
+/* A single-section page (404) hands its spare height to that section, so the
+   band above the footer stays the section's own colour rather than page bg.
+   :only-child keeps this off multi-section pages, which have no spare height. */
+body > main > .section:only-child {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+img, svg { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  color: var(--heading);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -.012em;
+  margin: 0 0 .5em;
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(2.25rem, 5.4vw, 3.75rem); }
+h2 { font-size: clamp(1.75rem, 3.7vw, 2.65rem); }
+h3 { font-size: clamp(1.125rem, 1.6vw, 1.3rem); }
+h4 { font-size: 1.0625rem; }
+
+p { margin: 0 0 1.1em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--blue-500); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--navy-800); }
+
+/* ol is reset alongside ul so list-style:none lists (.process) align with the
+   headings above them instead of keeping the browser's 40px marker indent. */
+ul, ol { margin: 0; padding: 0; }
+
+strong { color: var(--navy-800); font-weight: 600; }
+
+/* Keep the tap flash subtle and on-brand, and skip the click delay. */
+a, button, summary, [role="button"] {
+  -webkit-tap-highlight-color: rgba(16, 42, 67, .12);
+  touch-action: manipulation;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue-500);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 200;
+  background: var(--navy-800);
+  color: var(--white);
+  padding: .75rem 1.25rem;
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s var(--ease);
+}
+.skip-link:focus { transform: translate(-50%, 0); color: var(--white); }
+
+/* --------------------------------------------------------------------------
+   3. Layout primitives
+   -------------------------------------------------------------------------- */
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  /* With viewport-fit=cover the page runs under the notch and the rounded
+     corners in landscape; hold the gutter clear of both. */
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+.wrap--narrow { max-width: 900px; }
+
+.section { padding-block: var(--section-y); }
+.section--tight { padding-block: clamp(3rem, 6vw, 4.5rem); }
+
+.section--cream { background: var(--cream); }
+.section--white { background: var(--white); }
+.section--mist  { background: var(--mist); }
+
+.section--navy {
+  background: var(--navy-800);
+  color: var(--blue-200);
+}
+.section--navy h2,
+.section--navy h3,
+.section--navy h4 { color: var(--white); }
+.section--navy strong { color: var(--white); }
+/* :not(.btn) so buttons keep their own foreground colour on dark sections. */
+.section--navy a:not(.btn) { color: var(--blue-300); }
+
+/* Section heading block */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--blue-500);
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.eyebrow::after {
+  content: "";
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--sand);
+}
+.section--navy .eyebrow,
+.cta .eyebrow { color: var(--blue-300); }
+.section--navy .eyebrow::after,
+.section--navy .eyebrow::before,
+.cta .eyebrow::after,
+.cta .eyebrow::before { background: rgba(143, 180, 214, .35); }
+
+/* On a phone a long left-aligned eyebrow wraps and strands its 40px rule out
+   to the right. Centred eyebrows are short, so they keep theirs. */
+@media (max-width: 480px) {
+  .hero .eyebrow::after,
+  .section-head:not(.section-head--center) .eyebrow::after { display: none; }
+}
+
+/* Centred eyebrow outside a .section-head--center block */
+.eyebrow--center { justify-content: center; }
+.eyebrow--center::before {
+  content: "";
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--sand);
+}
+
+.section-head { max-width: 46rem; margin-bottom: clamp(2.5rem, 5vw, 3.75rem); }
+.section-head--center { margin-inline: auto; text-align: center; }
+.section-head--center .eyebrow { justify-content: center; }
+.section-head--center .eyebrow::before {
+  content: "";
+  flex: 0 0 40px;
+  height: 1px;
+  background: var(--sand);
+}
+.section--navy .section-head--center .eyebrow::before { background: rgba(143, 180, 214, .35); }
+
+.lede {
+  font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+  line-height: 1.6;
+  color: var(--slate);
+  margin-bottom: 0;
+}
+.section--navy .lede,
+.cta .lede { color: var(--blue-200); }
+
+.section-note {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-serif);
+  font-size: clamp(1.0625rem, 1.7vw, 1.25rem);
+  font-style: italic;
+  color: var(--navy-700);
+  text-align: center;
+}
+.section--navy .section-note {
+  border-top-color: rgba(143, 180, 214, .25);
+  color: var(--blue-300);
+}
+
+/* Grids */
+.grid { display: grid; gap: clamp(1.25rem, 2.4vw, 1.75rem); }
+.grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 900px) {
+  .grid--3, .grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .grid--2, .grid--3, .grid--4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --------------------------------------------------------------------------
+   4. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--navy-800);
+  --btn-fg: var(--white);
+  --btn-bd: var(--navy-800);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: .85rem 1.6rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bd);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color .18s var(--ease), color .18s var(--ease),
+              border-color .18s var(--ease), transform .18s var(--ease),
+              box-shadow .18s var(--ease);
+}
+.btn:hover {
+  color: var(--btn-fg);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+.btn:active { transform: translateY(0); box-shadow: none; }
+.btn svg { flex: 0 0 auto; }
+
+.btn--primary:hover { --btn-bg: var(--navy-700); --btn-bd: var(--navy-700); }
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--navy-800);
+  --btn-bd: var(--line);
+}
+.btn--ghost:hover { --btn-bg: var(--white); --btn-bd: var(--navy-800); }
+
+.btn--light {
+  --btn-bg: var(--cream);
+  --btn-fg: var(--navy-800);
+  --btn-bd: var(--cream);
+}
+.btn--light:hover { --btn-bg: var(--white); --btn-bd: var(--white); }
+
+.btn--outline-light {
+  --btn-bg: transparent;
+  --btn-fg: var(--white);
+  --btn-bd: rgba(169, 184, 199, .5);
+}
+.btn--outline-light:hover { --btn-bd: var(--white); --btn-bg: rgba(255, 255, 255, .08); }
+
+.btn--sm { padding: .55rem 1.05rem; font-size: .9375rem; }
+.btn--lg { padding: 1rem 2rem; font-size: 1.0625rem; }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .875rem;
+  align-items: center;
+}
+/* Once the row has to stack, ragged button widths read as an accident.
+   Give each one the full column instead — and a bigger tap target. */
+@media (max-width: 480px) {
+  .btn-row { gap: .75rem; }
+  .btn-row > .btn { width: 100%; }
+  .btn--lg { padding: 1rem 1.25rem; }
+}
+
+/* --------------------------------------------------------------------------
+   5. Header
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 247, 239, .93);
+  border-bottom: 1px solid transparent;
+  padding-top: var(--safe-top);
+  transition: box-shadow .25s var(--ease), border-color .25s var(--ease);
+}
+@supports (backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px)) {
+  .site-header {
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    backdrop-filter: saturate(1.4) blur(10px);
+  }
+}
+.site-header.is-stuck {
+  border-bottom-color: var(--rule);
+  box-shadow: 0 1px 16px rgba(16, 42, 67, .07);
+}
+
+.header-inner {
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  text-decoration: none;
+  color: var(--navy-800);
+  margin-right: auto;
+  flex-shrink: 0;
+  padding-block: .5rem;
+}
+.brand:hover { color: var(--navy-800); }
+.brand img { width: 40px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.brand-sub {
+  font-size: .625rem;
+  font-weight: 600;
+  letter-spacing: .19em;
+  text-transform: uppercase;
+  color: var(--blue-500);
+  margin-top: .2em;
+}
+
+.nav { display: flex; align-items: center; gap: clamp(.75rem, 2vw, 1.9rem); }
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(.75rem, 2vw, 1.9rem);
+  list-style: none;
+}
+.nav-list a {
+  position: relative;
+  color: var(--navy-700);
+  font-size: .9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: .4rem 0;
+  transition: color .18s var(--ease);
+}
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--blue-500);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .22s var(--ease);
+}
+.nav-list a:hover { color: var(--navy-800); }
+.nav-list a:hover::after,
+.nav-list a.is-active::after { transform: scaleX(1); }
+.nav-list a.is-active { color: var(--navy-800); }
+
+.nav-cta { display: flex; align-items: center; gap: .6rem; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 10px;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--navy-800);
+  border-radius: 2px;
+  transition: transform .22s var(--ease), opacity .18s var(--ease);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 1000px) {
+  .nav-toggle { display: flex; }
+  .nav {
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    top: calc(var(--header-h) + var(--safe-top));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--cream);
+    border-bottom: 1px solid var(--rule);
+    box-shadow: var(--shadow-lg);
+    padding: 1rem var(--gutter) 1.75rem;
+    max-height: calc(100vh - var(--header-h));
+    /* dvh so the panel measures the visible viewport, not the one hidden
+       behind a mobile browser's collapsing toolbar. */
+    max-height: calc(100dvh - var(--header-h) - var(--safe-top));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: max(1.75rem, env(safe-area-inset-bottom, 0px));
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s;
+  }
+  .nav.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-list { flex-direction: column; align-items: stretch; gap: 0; }
+  .nav-list a {
+    display: block;
+    padding: .9rem .25rem;
+    font-size: 1.0625rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-list a::after { display: none; }
+  .nav-list a.is-active { color: var(--blue-500); }
+  /* Scoped to .nav: 404.html puts a .nav-cta straight in the header bar with
+     no collapsing panel, and it must stay a centred, content-width button. */
+  .nav .nav-cta { flex-direction: column; align-items: stretch; margin-top: 1.25rem; }
+  .nav .nav-cta .btn { width: 100%; }
+}
+
+/* On 404.html the phone button sits in the header bar next to the brand with
+   no collapsing panel to hide in, and the pair overruns a small screen.
+   Trim the button's side padding first; only the narrowest phones also need
+   a smaller lock-up. The button keeps a full-height tap target throughout. */
+@media (max-width: 480px) {
+  .header-inner { gap: .75rem; }
+  .brand { flex-shrink: 1; min-width: 0; }
+  .header-inner > .nav-cta .btn--sm { padding: .6rem .8rem; }
+}
+@media (max-width: 360px) {
+  .brand img { width: 34px; }
+  .brand-name { font-size: 1rem; letter-spacing: .05em; }
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  background: var(--navy-800);
+  color: var(--blue-200);
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero::before {
+  width: 780px; height: 780px;
+  top: -320px; right: -220px;
+  background: radial-gradient(circle, rgba(47, 95, 135, .5) 0%, rgba(16, 42, 67, 0) 68%);
+}
+.hero::after {
+  width: 620px; height: 620px;
+  bottom: -340px; left: -200px;
+  background: radial-gradient(circle, rgba(143, 180, 214, .16) 0%, rgba(16, 42, 67, 0) 70%);
+}
+.hero > .wrap { position: relative; z-index: 1; }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+@media (max-width: 980px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.hero h1 { color: var(--white); margin-bottom: .45em; }
+.hero h1 .accent { color: var(--blue-300); display: block; }
+
+.hero-lede {
+  font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+  color: var(--blue-200);
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+.hero .btn-row { margin-bottom: 1.5rem; }
+
+.hero-reassure {
+  font-size: .9375rem;
+  color: var(--blue-200);
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  margin: 0;
+}
+.hero-reassure svg { color: var(--blue-300); flex: 0 0 auto; margin-top: .28rem; }
+
+.hero-capabilities {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(143, 180, 214, .22);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem .9rem;
+  list-style: none;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue-300);
+}
+.hero-capabilities li { display: flex; align-items: center; gap: .9rem; }
+.hero-capabilities li:not(:last-child)::after {
+  content: "";
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(143, 180, 214, .5);
+}
+/* Below ~560px the five labels no longer share a line. Left to wrap, flex
+   breaks them 4 + 1 and strands "Support" on its own, so place them on an
+   explicit 3 + 2 grid instead — the break then reads as intentional. The
+   separator on the third item would dangle at the row's end, so it goes. */
+@media (max-width: 560px) {
+  .hero-capabilities {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: start;
+    gap: .55rem .9rem;
+  }
+  .hero-capabilities li:nth-child(3)::after { display: none; }
+}
+/* The narrowest phones need the labels a shade tighter to hold that grid. */
+@media (max-width: 380px) {
+  .hero-capabilities { font-size: .6875rem; letter-spacing: .06em; gap: .5rem .7rem; }
+  .hero-capabilities li { gap: .6rem; }
+}
+
+/* Hero product panel */
+.hero-panel {
+  position: relative;
+  background: linear-gradient(160deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .03));
+  border: 1px solid rgba(143, 180, 214, .25);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: var(--shadow-lg);
+}
+.hero-panel-label {
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--blue-300);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+}
+.hero-panel-label .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #6fcf97;
+  box-shadow: 0 0 0 3px rgba(111, 207, 151, .18);
+}
+/* Capped so the product shot does not dominate once the hero stacks — but
+   min() keeps the cap from beating the base img{max-width:100%} on a phone,
+   where a flat 420px pushed the shot outside the panel and got clipped. */
+.hero-panel img {
+  margin: 0 auto;
+  max-width: min(420px, 100%);
+  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, .42));
+}
+
+.hero-specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 1.5rem;
+  background: rgba(143, 180, 214, .22);
+  border: 1px solid rgba(143, 180, 214, .22);
+  border-radius: var(--radius);
+  overflow: hidden;
+  list-style: none;
+}
+.hero-specs li {
+  background: var(--navy-800);
+  padding: .9rem .5rem;
+  text-align: center;
+}
+.hero-specs .k {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.hero-specs .v {
+  display: block;
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--blue-300);
+  margin-top: .2rem;
+}
+/* Three cells across a phone leaves ~75px each; ease the padding and tracking
+   so the longest label ("Wide & deep") stays on one line. */
+@media (max-width: 480px) {
+  .hero-panel { padding: 1.25rem; }
+  .hero-specs li { padding: .8rem .3rem; }
+  .hero-specs .v { letter-spacing: .04em; font-size: .625rem; }
+}
+
+/* --------------------------------------------------------------------------
+   7. Stats
+   -------------------------------------------------------------------------- */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+@media (max-width: 860px) { .stats { grid-template-columns: minmax(0, 1fr); } }
+
+.stat {
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 2.25rem);
+  border-left: 1px solid var(--rule);
+}
+.stat:first-child { border-left: 0; padding-left: 0; }
+@media (max-width: 860px) {
+  .stat { border-left: 0; border-top: 1px solid var(--rule); padding-inline: 0; }
+  .stat:first-child { border-top: 0; padding-top: 0; }
+}
+.stat-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 6vw, 3.9rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--navy-800);
+  letter-spacing: -.02em;
+  margin-bottom: .55rem;
+}
+.stat-text { font-size: 1rem; color: var(--slate); margin-bottom: .75rem; }
+.stat-src {
+  font-size: .75rem;
+  letter-spacing: .04em;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. Cards
+   -------------------------------------------------------------------------- */
+.card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 2.6vw, 2rem);
+  box-shadow: var(--shadow-sm);
+  transition: transform .22s var(--ease), box-shadow .22s var(--ease),
+              border-color .22s var(--ease);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--blue-300);
+}
+.card h3 { margin-bottom: .5rem; }
+.card p { font-size: .9875rem; margin-bottom: 0; color: var(--slate); }
+
+.section--white .card { background: var(--cream); }
+
+.icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  background: rgba(47, 95, 135, .09);
+  color: var(--blue-500);
+  margin-bottom: 1.1rem;
+}
+.icon svg { width: 22px; height: 22px; }
+
+.section--navy .card {
+  background: rgba(255, 255, 255, .045);
+  border-color: rgba(143, 180, 214, .22);
+  box-shadow: none;
+}
+.section--navy .card:hover { border-color: rgba(143, 180, 214, .5); }
+.section--navy .card p { color: var(--blue-200); }
+.section--navy .icon { background: rgba(143, 180, 214, .14); color: var(--blue-300); }
+
+/* Numbered path steps */
+.path { counter-reset: step; }
+.path-step {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 2.5vw, 1.9rem);
+  counter-increment: step;
+}
+.path-step::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--blue-300);
+  line-height: 1;
+  margin-bottom: .9rem;
+}
+.path-step h3 { font-size: 1.125rem; margin-bottom: .4rem; }
+.path-step p { font-size: .9375rem; margin-bottom: 0; }
+.path-step::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: calc(-1 * clamp(1.25rem, 2.4vw, 1.75rem));
+  width: clamp(1.25rem, 2.4vw, 1.75rem);
+  height: 1px;
+  background: var(--sand);
+}
+.path-step:last-child::after { display: none; }
+@media (max-width: 900px) { .path-step::after { display: none; } }
+
+/* Feature rows (icon + text) */
+.feature { display: flex; gap: 1.1rem; align-items: flex-start; }
+.feature .icon { flex: 0 0 46px; margin-bottom: 0; }
+.feature h3 { font-size: 1.0625rem; margin-bottom: .3rem; }
+.feature p { font-size: .9375rem; margin-bottom: 0; }
+
+/* --------------------------------------------------------------------------
+   9. Architecture diagram
+   -------------------------------------------------------------------------- */
+.arch {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  align-items: start;
+}
+@media (max-width: 900px) { .arch { grid-template-columns: minmax(0, 1fr); } }
+
+.zone {
+  border: 1px solid rgba(143, 180, 214, .3);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: rgba(255, 255, 255, .04);
+}
+.zone--outside {
+  border-style: dashed;
+  background: transparent;
+}
+.zone-title {
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--blue-300);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+}
+
+.node {
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(143, 180, 214, .22);
+  border-radius: var(--radius);
+  padding: .85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  color: var(--white);
+  font-size: .9375rem;
+  font-weight: 600;
+}
+.node svg { color: var(--blue-300); flex: 0 0 auto; }
+
+.node-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .75rem;
+}
+@media (max-width: 560px) { .node-row { grid-template-columns: minmax(0, 1fr); } }
+
+.arch-connector {
+  height: 30px;
+  margin: .5rem auto;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(143, 180, 214, .1), rgba(143, 180, 214, .55));
+  position: relative;
+}
+.arch-connector::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translate(-50%, 50%) rotate(45deg);
+  width: 6px; height: 6px;
+  border-right: 1px solid rgba(143, 180, 214, .55);
+  border-bottom: 1px solid rgba(143, 180, 214, .55);
+}
+
+.server {
+  background: linear-gradient(150deg, rgba(47, 95, 135, .45), rgba(27, 58, 90, .55));
+  border: 1px solid rgba(143, 180, 214, .45);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.1rem, 2.2vw, 1.5rem);
+}
+.server-name {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+.server-name svg { color: var(--blue-300); flex: 0 0 auto; }
+.server-list { list-style: none; display: grid; gap: .65rem; }
+.server-list li {
+  display: flex;
+  gap: .65rem;
+  align-items: flex-start;
+  font-size: .9375rem;
+  color: var(--blue-200);
+  line-height: 1.5;
+}
+.server-list svg { flex: 0 0 auto; margin-top: .3rem; color: var(--blue-300); }
+
+.zone-foot {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(143, 180, 214, .2);
+  font-size: .875rem;
+  color: var(--blue-200);
+}
+
+.offline-badge {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: .55rem;
+  margin-top: 1.5rem;
+  padding: .6rem 1rem;
+  border-radius: var(--radius-lg);
+  background: rgba(111, 207, 151, .12);
+  border: 1px solid rgba(111, 207, 151, .35);
+  color: #a8e6c1;
+  font-size: .875rem;
+  font-weight: 600;
+}
+.offline-badge svg { flex: 0 0 auto; margin-top: .18rem; }
+
+/* --------------------------------------------------------------------------
+   10. Process
+   -------------------------------------------------------------------------- */
+.process { counter-reset: phase; list-style: none; display: grid; gap: 0; }
+.process-item {
+  counter-increment: phase;
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1.75rem, 3vw, 2.25rem) 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.process-item:last-child { border-bottom: 1px solid var(--rule); }
+@media (max-width: 640px) { .process-item { grid-template-columns: minmax(0, 1fr); gap: .5rem; } }
+
+.process-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: .9;
+  color: var(--sand);
+  letter-spacing: -.03em;
+}
+.process-item h3 { margin-bottom: .4rem; }
+.process-item p { margin-bottom: 0; }
+/* The list's own closing rule serves as the divider — no second line. */
+.process + .section-note { border-top: 0; padding-top: 0; }
+
+/* --------------------------------------------------------------------------
+   11. FAQ
+   -------------------------------------------------------------------------- */
+.faq { max-width: 52rem; margin-inline: auto; }
+.faq-item { border-bottom: 1px solid var(--rule); }
+.faq-item:first-child { border-top: 1px solid var(--rule); }
+.faq-item > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.35rem .25rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.0625rem, 1.7vw, 1.25rem);
+  font-weight: 600;
+  color: var(--navy-800);
+  transition: color .18s var(--ease);
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::marker { content: ""; }
+.faq-item > summary:hover { color: var(--blue-500); }
+.faq-icon {
+  flex: 0 0 22px;
+  width: 22px; height: 22px;
+  margin-top: .3rem;
+  position: relative;
+}
+.faq-icon::before, .faq-icon::after {
+  content: "";
+  position: absolute;
+  background: var(--blue-500);
+  border-radius: 2px;
+  transition: transform .25s var(--ease), opacity .2s var(--ease);
+}
+.faq-icon::before { top: 10px; left: 2px; width: 18px; height: 2px; }
+.faq-icon::after  { left: 10px; top: 2px; width: 2px; height: 18px; }
+.faq-item[open] .faq-icon::after { transform: scaleY(0); opacity: 0; }
+.faq-answer { padding: 0 3rem 1.6rem .25rem; }
+.faq-answer p { font-size: 1rem; }
+@media (max-width: 600px) { .faq-answer { padding-right: .25rem; } }
+
+/* --------------------------------------------------------------------------
+   12. Final CTA
+   -------------------------------------------------------------------------- */
+.cta {
+  position: relative;
+  background: var(--navy-800);
+  overflow: hidden;
+  text-align: center;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  width: 900px; height: 900px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(47, 95, 135, .45) 0%, rgba(16, 42, 67, 0) 65%);
+  pointer-events: none;
+}
+.cta > .wrap { position: relative; z-index: 1; }
+.cta h2 { color: var(--white); }
+.cta .lede { margin-inline: auto; max-width: 40rem; }
+
+.cta-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: .85rem;
+  margin: clamp(1.75rem, 4vw, 2.5rem) 0 1.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.9rem, 5.2vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -.015em;
+  color: var(--white);
+  text-decoration: none;
+  transition: color .18s var(--ease);
+}
+.cta-phone:hover { color: var(--blue-300); }
+.cta-phone svg { flex: 0 0 auto; width: .78em; height: .78em; color: var(--blue-300); }
+
+.cta .btn-row { justify-content: center; }
+
+.cta-meta {
+  margin-top: 1.75rem;
+  font-size: .9375rem;
+  color: var(--blue-200);
+}
+.cta-meta a { color: var(--blue-300); }
+
+/* --------------------------------------------------------------------------
+   13. Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--navy-900);
+  color: var(--blue-200);
+  padding-block: clamp(3rem, 6vw, 4.5rem) 2rem;
+  font-size: .9375rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+@media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .footer-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.footer-brand { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.1rem; }
+.footer-brand img { width: 44px; }
+.footer-brand .brand-name { color: var(--white); }
+.footer-brand .brand-sub { color: var(--blue-300); }
+.footer-about { max-width: 26rem; color: var(--blue-200); }
+
+.footer-col h4 {
+  font-family: var(--font-sans);
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 1.1rem;
+}
+.footer-col ul { list-style: none; display: grid; gap: .6rem; }
+.footer-col a { color: var(--blue-200); text-decoration: none; }
+.footer-col a:hover { color: var(--white); text-decoration: underline; }
+.footer-col address { font-style: normal; color: var(--blue-200); }
+
+.footer-bottom {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(143, 180, 214, .18);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem 1.5rem;
+  align-items: center;
+  font-size: .8125rem;
+  color: #8ea0b2;
+}
+.footer-legal { display: flex; flex-wrap: wrap; gap: 1.25rem; list-style: none; }
+.footer-legal a { color: #8ea0b2; text-decoration: none; }
+.footer-legal a:hover { color: var(--white); text-decoration: underline; }
+
+/* Footer links sit at ~20px tall by default — too small to hit confidently
+   with a thumb. Applies to any touch device, since a tablet gets thumbs too. */
+@media (max-width: 700px), (hover: none) {
+  /* The list gap carries the plain-text rows (hours, service area); the link
+     padding carries the tap targets. Both land on the same rhythm. */
+  .footer-col ul { gap: .35rem; }
+  .footer-col li { line-height: 1.5; }
+  .footer-col a,
+  .footer-legal a {
+    display: inline-block;
+    padding-block: .45rem;
+  }
+  .footer-legal { gap: .25rem 1.25rem; }
+  .site-footer { padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px)); }
+}
+
+/* --------------------------------------------------------------------------
+   14. Back to top
+   -------------------------------------------------------------------------- */
+.to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  /* Clear of the iOS home indicator and the landscape rounded corners. */
+  right: calc(clamp(1rem, 3vw, 2rem) + env(safe-area-inset-right, 0px));
+  bottom: calc(clamp(1rem, 3vw, 2rem) + env(safe-area-inset-bottom, 0px));
+  z-index: 90;
+  width: 46px; height: 46px;
+  display: grid;
+  place-items: center;
+  background: var(--navy-800);
+  color: var(--white);
+  border: 1px solid var(--navy-700);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s,
+              background-color .18s var(--ease);
+}
+.to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.to-top:hover { background: var(--blue-500); }
+
+/* --------------------------------------------------------------------------
+   15. Legal / content pages
+   -------------------------------------------------------------------------- */
+.page-header {
+  background: var(--navy-800);
+  color: var(--blue-200);
+  padding-block: clamp(3rem, 7vw, 5rem);
+}
+.page-header h1 { color: var(--white); margin-bottom: .3em; font-size: clamp(2rem, 4.4vw, 3rem); }
+.page-header p { margin: 0; color: var(--blue-200); }
+
+.prose { max-width: 46rem; }
+.prose h2 {
+  font-size: clamp(1.25rem, 2.4vw, 1.55rem);
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.prose h2:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+.prose ul,
+.prose ol { padding-left: 1.25rem; margin: 0 0 1.1em; }
+.prose li { margin-bottom: .5rem; }
+.prose .updated {
+  font-size: .8125rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   16. Utilities & motion
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center { text-align: center; }
+
+/* Scroll reveal — only applied when JS is available */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.js .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   17. Print
+   -------------------------------------------------------------------------- */
+@media print {
+  .site-header, .to-top, .nav-toggle, .skip-link { display: none !important; }
+  .hero::before, .hero::after, .cta::before { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .section { padding-block: 1.5rem; }
+  .hero, .section--navy, .cta, .site-footer, .page-header, .server, .zone {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .hero h1, .hero .accent, .section--navy h2, .section--navy h3, .section--navy .lede,
+  .cta h2, .cta-phone, .page-header h1, .page-header p, .node, .server-list li {
+    color: #000 !important;
+  }
+  .card, .path-step { box-shadow: none; break-inside: avoid; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+}
