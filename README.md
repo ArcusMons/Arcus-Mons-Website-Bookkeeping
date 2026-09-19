@@ -57,8 +57,6 @@ Search every file for **`[PLACEHOLDER`** to find them. As of the last edit:
 ### Elsewhere on `index.html`
 
 - **Software migration card** — which platforms you migrate from and to.
-- **Onboarding step (02)** — typical onboarding time.
-- **Every month after, step (03)** — which day statements land.
 - **FAQ: accounting software** — the platforms you support (QuickBooks Online, Xero, Wave, …).
 - **FAQ: taxes** — whether you also prepare and file returns, and for which entity types.
 - **FAQ: documents** — the name of your portal or file-sharing tool.
@@ -95,7 +93,7 @@ time, because those were not supplied — if you want them, add them.
 
 ## 3. What is on the page
 
-`index.html` is one scrolling page — **eight sections**, each answering a question the
+`index.html` is one scrolling page — **seven sections**, each answering a question the
 page has not already answered:
 
 | # | Section | The question it answers |
@@ -105,21 +103,21 @@ page has not already answered:
 | 3 | **How It Works** (navy) | What do I send, what do you do with it, and do you cover my state? |
 | 4 | **Services** (white) | What exactly is included each month — and what about getting started from a mess? |
 | 5 | **Pricing** (cream) | What will I actually pay? |
-| 6 | **Getting started** (white) | What happens after I call? |
-| 7 | **FAQ** (cream) | The seven objections the page does not answer above. |
-| 8 | **Call to action** (navy) | How do I reach you? |
+| 6 | **FAQ** (white) | The seven objections the page does not answer above. |
+| 7 | **Call to action** (navy) | How do I reach you? |
 
 The nav mirrors the four that sell: How It Works · Services · Pricing · FAQ, plus a phone
 button visible at every scroll position.
 
 **Sections alternate** so no two neighbouring bands share a background — navy, cream,
-navy, white, cream, white, cream, navy. If you add or remove a section, keep that going.
+navy, white, cream, white, navy. If you add or remove a section, keep that going. (When
+"What happens, in order" was removed, FAQ had to flip from cream to white so it would not
+sit cream-on-cream against Pricing — that is the kind of knock-on to watch for.)
 
 ### The editing rule for this page
 
 The page is deliberately short, and it got there by cutting. **Before adding anything, check
-whether the fact is already stated somewhere above it.** Three earlier sections were removed
-for saying things the page already said:
+whether the fact is already stated somewhere above it.** Five sections have been removed:
 
 - a stats band whose three figures (`$50` / `50 states` / `100% remote`) were a literal
   copy of the strip in the hero panel;
@@ -129,12 +127,17 @@ for saying things the page already said:
 - a **testimonials** section built entirely from placeholder quotes — it carried no
   information and would have been a liability if it went live unfilled. If you get real,
   attributed client quotes, that is worth adding back as its own white band between
-  Pricing and Getting started. Until then, do not.
+  Pricing and the FAQ. Until then, do not.
+- **"What happens, in order"** — the three-step call → onboarding → monthly rhythm list,
+  removed at the owner's request. Note what went with it: the only statement of *typical
+  onboarding time* and *which day statements arrive*. Both were `[PLACEHOLDER]`, so nothing
+  factual was lost, but if a prospect ever asks "how long until you're up and running?",
+  the page no longer answers it. The FAQ is where that answer would belong now.
 
 A hero "capabilities" strip was also dropped: it listed the same four words as the
 Services headings, two screens below.
 
-Some repetition is correct and deliberate. The phone number appears six times, `$50`
+Some repetition is correct and deliberate. The `tel:` link appears eight times, `$50`
 appears wherever price is relevant, and **"all 50 states" appears eight times** — nationwide
 coverage is the single thing a visitor most needs to not miss. Do not thin those out.
 
@@ -192,12 +195,13 @@ policy), download the two families into `assets/fonts/`, add `@font-face` rules,
 delete the three `<link>` tags in each page's `<head>`.
 
 **Stylesheet sections**, numbered in order: tokens, reset, layout primitives, buttons,
-header, hero, cards, the how-it-works diagram, process, FAQ, pricing, final CTA, footer,
+header, hero, cards, the how-it-works diagram, FAQ, pricing, final CTA, footer,
 back-to-top, legal pages, utilities, print.
 
-The stylesheet was trimmed alongside the page — the `.stats`, `.quote`/`.quotes` and
-`.hero-capabilities` rules were deleted when their sections were, rather than left as dead
-weight. If you bring testimonials back, the old `.quote` styles are in git history.
+The stylesheet is trimmed alongside the page — the `.stats`, `.quote`/`.quotes`,
+`.hero-capabilities` and `.process`/`.process-item`/`.process-num` rules were all deleted
+when their sections were, rather than left as dead weight. If you bring any of those
+sections back, the styles are recoverable from git history.
 
 `.subhead` is the one component added for conciseness: it puts a second heading and rule
 inside an existing section, which is what lets **Services** carry both the monthly work and

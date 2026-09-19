@@ -117,8 +117,8 @@ p:last-child { margin-bottom: 0; }
 a { color: var(--blue-500); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 a:hover { color: var(--navy-800); }
 
-/* ol is reset alongside ul so list-style:none lists (.process) align with the
-   headings above them instead of keeping the browser's 40px marker indent. */
+/* ol is reset alongside ul so list-style:none lists align with the headings
+   above them instead of keeping the browser's 40px marker indent. */
 ul, ol { margin: 0; padding: 0; }
 
 strong { color: var(--navy-800); font-weight: 600; }
@@ -899,36 +899,7 @@ a, button, summary, [role="button"] {
 .pill-badge svg { flex: 0 0 auto; margin-top: .18rem; }
 
 /* --------------------------------------------------------------------------
-   9. Process
-   -------------------------------------------------------------------------- */
-.process { counter-reset: phase; list-style: none; display: grid; gap: 0; }
-.process-item {
-  counter-increment: phase;
-  display: grid;
-  grid-template-columns: 88px minmax(0, 1fr);
-  gap: clamp(1rem, 3vw, 2rem);
-  padding: clamp(1.75rem, 3vw, 2.25rem) 0;
-  border-top: 1px solid var(--rule);
-  align-items: start;
-}
-.process-item:last-child { border-bottom: 1px solid var(--rule); }
-@media (max-width: 640px) { .process-item { grid-template-columns: minmax(0, 1fr); gap: .5rem; } }
-
-.process-num {
-  font-family: var(--font-serif);
-  font-size: clamp(2.25rem, 5vw, 3rem);
-  font-weight: 700;
-  line-height: .9;
-  color: var(--sand);
-  letter-spacing: -.03em;
-}
-.process-item h3 { margin-bottom: .4rem; }
-.process-item p { margin-bottom: 0; }
-/* The list's own closing rule serves as the divider — no second line. */
-.process + .section-note { border-top: 0; padding-top: 0; }
-
-/* --------------------------------------------------------------------------
-   10. FAQ
+   9. FAQ
    -------------------------------------------------------------------------- */
 .faq { max-width: 52rem; margin-inline: auto; }
 .faq-item { border-bottom: 1px solid var(--rule); }
@@ -971,7 +942,7 @@ a, button, summary, [role="button"] {
 @media (max-width: 600px) { .faq-answer { padding-right: .25rem; } }
 
 /* --------------------------------------------------------------------------
-   11. Pricing
+   10. Pricing
    -------------------------------------------------------------------------- */
 .pricing {
   display: grid;
@@ -1110,7 +1081,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   12. Final CTA
+   11. Final CTA
    -------------------------------------------------------------------------- */
 .cta {
   position: relative;
@@ -1157,7 +1128,7 @@ a, button, summary, [role="button"] {
 .cta-meta a { color: var(--blue-300); }
 
 /* --------------------------------------------------------------------------
-   13. Footer
+   12. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
   background: var(--navy-900);
@@ -1225,7 +1196,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   14. Back to top
+   13. Back to top
    -------------------------------------------------------------------------- */
 .to-top {
   position: fixed;
@@ -1254,7 +1225,7 @@ a, button, summary, [role="button"] {
 .to-top:hover { background: var(--blue-500); }
 
 /* --------------------------------------------------------------------------
-   15. Legal / content pages
+   14. Legal / content pages
    -------------------------------------------------------------------------- */
 .page-header {
   background: var(--navy-800);
@@ -1284,7 +1255,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   16. Utilities & motion
+   15. Utilities & motion
    -------------------------------------------------------------------------- */
 .visually-hidden {
   position: absolute !important;
@@ -1319,7 +1290,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   17. Print
+   16. Print
    -------------------------------------------------------------------------- */
 @media print {
   .site-header, .to-top, .nav-toggle, .skip-link { display: none !important; }
