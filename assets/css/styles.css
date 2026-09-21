@@ -563,7 +563,6 @@ a, button, summary, [role="button"] {
 }
 
 .hero h1 { color: var(--white); margin-bottom: .45em; }
-.hero h1 .accent { color: var(--blue-300); display: block; }
 
 /* The base rule paints <strong> navy, which is invisible on the navy hero.
    .section--navy has its own override; .hero is not one, so it needs this. */
@@ -1147,7 +1146,7 @@ a, button, summary, [role="button"] {
     background: #fff !important;
     color: #000 !important;
   }
-  .hero h1, .hero .accent, .section--navy h2, .section--navy h3, .section--navy .lede,
+  .hero h1, .section--navy h2, .section--navy h3, .section--navy .lede,
   .cta h2, .cta-phone, .page-header h1, .page-header p,
   .hero-deliverables li {
     color: #000 !important;

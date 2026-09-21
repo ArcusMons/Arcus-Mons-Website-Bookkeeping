@@ -14,7 +14,7 @@ These are real values, already wired in across every page:
 
 | | |
 |---|---|
-| Phone | **720-937-6463** — displayed as `720-937-6463`, linked as `tel:+17209376463` |
+| Phone | **801-633-6487** — displayed as `801-633-6487`, linked as `tel:+18016336487` |
 | Email | **arcusmons@gmail.com** |
 | Hours | **Monday – Saturday, 8:30 a.m. – 6:00 p.m.** |
 | Service area | **All 50 states** — remote, nationwide |
@@ -22,9 +22,9 @@ These are real values, already wired in across every page:
 | Governing law | **Utah** (`terms.html`) |
 
 > **Keep the two phone formats in sync.** The display string and the `tel:` string are
-> deliberately different: `+17209376463` is E.164 — no dashes, no spaces — and that is
+> deliberately different: `+18016336487` is E.164 — no dashes, no spaces — and that is
 > what makes the number tap-to-dial on a phone. If you change the number, change both,
-> plus `+1-720-937-6463` in the structured-data block near the bottom of `index.html`.
+> plus `+1-801-633-6487` in the structured-data block near the bottom of `index.html`.
 
 **Hours appear in four places.** Change them together: the footer Contact column on
 `index.html`, `privacy.html` and `terms.html`; the line under the closing call-to-action
@@ -60,8 +60,9 @@ answered, and the documents/security questions were removed rather than left hal
 
 ### On the legal pages
 
-- `privacy.html` — named portal/software providers, your retention period, what you hand
-  back when an engagement ends, and any security specifics you want to publish.
+No placeholders remain in `privacy.html` — the named-provider sentence, the retention
+period and the security-specifics sentence were all removed rather than filled in.
+
 - `terms.html` — an HTML comment asks counsel to confirm the **Utah venue clause** still
   makes sense now that clients can be in any state.
 
