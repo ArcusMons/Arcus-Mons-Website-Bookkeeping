@@ -719,40 +719,6 @@ a, button, summary, [role="button"] {
 .section--navy .card p { color: var(--blue-200); }
 .section--navy .icon { background: rgba(143, 180, 214, .14); color: var(--blue-300); }
 
-/* Numbered path steps */
-.path { counter-reset: step; }
-.path-step {
-  position: relative;
-  background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 2.5vw, 1.9rem);
-  counter-increment: step;
-}
-.path-step::before {
-  content: counter(step, decimal-leading-zero);
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--blue-300);
-  line-height: 1;
-  margin-bottom: .9rem;
-}
-.path-step h3 { font-size: 1.125rem; margin-bottom: .4rem; }
-.path-step p { font-size: .9375rem; margin-bottom: 0; }
-.path-step::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: calc(-1 * clamp(1.25rem, 2.4vw, 1.75rem));
-  width: clamp(1.25rem, 2.4vw, 1.75rem);
-  height: 1px;
-  background: var(--sand);
-}
-.path-step:last-child::after { display: none; }
-@media (max-width: 900px) { .path-step::after { display: none; } }
-
 /* A second heading inside an existing section — lets one section carry two
    related blocks (the monthly work, then the one-off work) instead of
    spending a whole new band on the smaller of the two. */
@@ -777,129 +743,7 @@ a, button, summary, [role="button"] {
 .feature p { font-size: .9375rem; margin-bottom: 0; }
 
 /* --------------------------------------------------------------------------
-   8. Architecture diagram
-   -------------------------------------------------------------------------- */
-.arch {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  gap: clamp(1.5rem, 3vw, 2.25rem);
-  align-items: start;
-}
-@media (max-width: 900px) { .arch { grid-template-columns: minmax(0, 1fr); } }
-
-.zone {
-  border: 1px solid rgba(143, 180, 214, .3);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.25rem, 2.5vw, 1.75rem);
-  background: rgba(255, 255, 255, .04);
-}
-.zone--outside {
-  border-style: dashed;
-  background: transparent;
-}
-.zone-title {
-  font-size: .6875rem;
-  font-weight: 700;
-  letter-spacing: .17em;
-  text-transform: uppercase;
-  color: var(--blue-300);
-  margin-bottom: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: .55rem;
-}
-
-.node {
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(143, 180, 214, .22);
-  border-radius: var(--radius);
-  padding: .85rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  color: var(--white);
-  font-size: .9375rem;
-  font-weight: 600;
-}
-.node svg { color: var(--blue-300); flex: 0 0 auto; }
-
-.node-row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: .75rem;
-}
-@media (max-width: 560px) { .node-row { grid-template-columns: minmax(0, 1fr); } }
-
-.arch-connector {
-  height: 30px;
-  margin: .5rem auto;
-  width: 1px;
-  background: linear-gradient(to bottom, rgba(143, 180, 214, .1), rgba(143, 180, 214, .55));
-  position: relative;
-}
-.arch-connector::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 50%;
-  transform: translate(-50%, 50%) rotate(45deg);
-  width: 6px; height: 6px;
-  border-right: 1px solid rgba(143, 180, 214, .55);
-  border-bottom: 1px solid rgba(143, 180, 214, .55);
-}
-
-.server {
-  background: linear-gradient(150deg, rgba(47, 95, 135, .45), rgba(27, 58, 90, .55));
-  border: 1px solid rgba(143, 180, 214, .45);
-  border-radius: var(--radius-lg);
-  padding: clamp(1.1rem, 2.2vw, 1.5rem);
-}
-.server-name {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--white);
-  margin-bottom: 1rem;
-}
-.server-name svg { color: var(--blue-300); flex: 0 0 auto; }
-.server-list { list-style: none; display: grid; gap: .65rem; }
-.server-list li {
-  display: flex;
-  gap: .65rem;
-  align-items: flex-start;
-  font-size: .9375rem;
-  color: var(--blue-200);
-  line-height: 1.5;
-}
-.server-list svg { flex: 0 0 auto; margin-top: .3rem; color: var(--blue-300); }
-
-.zone-foot {
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(143, 180, 214, .2);
-  font-size: .875rem;
-  color: var(--blue-200);
-}
-
-.pill-badge {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: .55rem;
-  margin-top: 1.5rem;
-  padding: .6rem 1rem;
-  border-radius: var(--radius-lg);
-  background: rgba(111, 207, 151, .12);
-  border: 1px solid rgba(111, 207, 151, .35);
-  color: #a8e6c1;
-  font-size: .875rem;
-  font-weight: 600;
-}
-.pill-badge svg { flex: 0 0 auto; margin-top: .18rem; }
-
-/* --------------------------------------------------------------------------
-   9. FAQ
+   8. FAQ
    -------------------------------------------------------------------------- */
 .faq { max-width: 52rem; margin-inline: auto; }
 .faq-item { border-bottom: 1px solid var(--rule); }
@@ -942,13 +786,15 @@ a, button, summary, [role="button"] {
 @media (max-width: 600px) { .faq-answer { padding-right: .25rem; } }
 
 /* --------------------------------------------------------------------------
-   10. Pricing
+   9. Pricing
    -------------------------------------------------------------------------- */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1.25rem, 2.4vw, 1.75rem);
   align-items: stretch;
+  max-width: 46rem;
+  margin-inline: auto;
 }
 /* One column below 900px — but capped and centred, so a single card does not
    stretch to the full 1160px wrap on a tablet. */
@@ -1081,7 +927,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   11. Final CTA
+   10. Final CTA
    -------------------------------------------------------------------------- */
 .cta {
   position: relative;
@@ -1128,7 +974,7 @@ a, button, summary, [role="button"] {
 .cta-meta a { color: var(--blue-300); }
 
 /* --------------------------------------------------------------------------
-   12. Footer
+   11. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
   background: var(--navy-900);
@@ -1196,7 +1042,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   13. Back to top
+   12. Back to top
    -------------------------------------------------------------------------- */
 .to-top {
   position: fixed;
@@ -1225,7 +1071,7 @@ a, button, summary, [role="button"] {
 .to-top:hover { background: var(--blue-500); }
 
 /* --------------------------------------------------------------------------
-   14. Legal / content pages
+   13. Legal / content pages
    -------------------------------------------------------------------------- */
 .page-header {
   background: var(--navy-800);
@@ -1255,7 +1101,7 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   15. Utilities & motion
+   14. Utilities & motion
    -------------------------------------------------------------------------- */
 .visually-hidden {
   position: absolute !important;
@@ -1290,23 +1136,23 @@ a, button, summary, [role="button"] {
 }
 
 /* --------------------------------------------------------------------------
-   16. Print
+   15. Print
    -------------------------------------------------------------------------- */
 @media print {
   .site-header, .to-top, .nav-toggle, .skip-link { display: none !important; }
   .hero::before, .hero::after, .cta::before { display: none !important; }
   body { background: #fff; color: #000; font-size: 11pt; }
   .section { padding-block: 1.5rem; }
-  .hero, .section--navy, .cta, .site-footer, .page-header, .server, .zone {
+  .hero, .section--navy, .cta, .site-footer, .page-header {
     background: #fff !important;
     color: #000 !important;
   }
   .hero h1, .hero .accent, .section--navy h2, .section--navy h3, .section--navy .lede,
-  .cta h2, .cta-phone, .page-header h1, .page-header p, .node, .server-list li,
+  .cta h2, .cta-phone, .page-header h1, .page-header p,
   .hero-deliverables li {
     color: #000 !important;
   }
   .price-flag { background: #fff !important; color: #000 !important; border: 1px solid #000; }
-  .card, .path-step, .price-card { box-shadow: none; break-inside: avoid; }
+  .card, .price-card { box-shadow: none; break-inside: avoid; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }

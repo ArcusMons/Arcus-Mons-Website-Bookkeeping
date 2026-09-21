@@ -30,11 +30,12 @@ These are real values, already wired in across every page:
 `index.html`, `privacy.html` and `terms.html`; the line under the closing call-to-action
 on `index.html`; and the `openingHoursSpecification` block in the structured data.
 
-**Nationwide coverage appears in six places, on purpose.** The hero specs strip (`50 /
-States served`), the "Where you are" panel and its badge, the FAQ, the closing
-call-to-action line, the footer Contact column on all three pages, and the `areaServed`
-block in the structured data. This is the one message the page repeats deliberately — a
-visitor outside Utah must not be able to miss it.
+**Nationwide coverage appears in several places, on purpose.** The hero specs strip (`50 /
+States served`), the closing call-to-action line, the footer Contact column on all three
+pages, and the `areaServed` block in the structured data. This is the one message the page
+repeats deliberately — a visitor outside Utah must not be able to miss it. (The FAQ used to
+carry it too, in a "do you only work with businesses in Utah?" question — removed at the
+owner's request; see §7.)
 
 ---
 
@@ -44,24 +45,18 @@ Search every file for **`[PLACEHOLDER`** to find them. As of the last edit:
 
 ### Pricing (`index.html`, the `#pricing` section)
 
+Two tiers now, both real prices, split at transaction volume — no placeholders left here.
+
 | What | Status |
 |---|---|
-| Starter price | **$50/month — real.** |
-| Growth price | `$XX` + `[PLACEHOLDER: set this price]` |
-| Full service price | `$XX` + `[PLACEHOLDER: set this price]` |
-| Account / transaction limits in every tier | `[PLACEHOLDER]` — these are what actually separate the tiers, so decide them before launch |
-| Growth's sixth feature | `[PLACEHOLDER: e.g. a monthly review call]` |
-| Full service's three differentiators | `[PLACEHOLDER: …]` |
-| Catch-up pricing (the dashed panel below the tiers) | `[PLACEHOLDER: e.g. $X for each month brought current]` |
+| Starter price | **$50/month, up to 500 transactions — real.** |
+| Full service price | **$100/month, everything over 500 transactions — real.** |
+| Catch-up pricing (the panel below the tiers) | **$50 per month of backlog — real.** |
 
 ### Elsewhere on `index.html`
 
-- **Software migration card** — which platforms you migrate from and to.
-- **FAQ: accounting software** — the platforms you support (QuickBooks Online, Xero, Wave, …).
-- **FAQ: taxes** — whether you also prepare and file returns, and for which entity types.
-- **FAQ: documents** — the name of your portal or file-sharing tool.
-- **FAQ: contracts** — your actual terms (month-to-month? notice period? who keeps the file?).
-- **FAQ: security** — the specifics you are willing to publish (MFA, encryption, insurance, bonding).
+No placeholders remain in the FAQ — accounting software, taxes and contract terms are
+answered, and the documents/security questions were removed rather than left half-answered.
 
 ### On the legal pages
 
@@ -93,35 +88,38 @@ time, because those were not supplied — if you want them, add them.
 
 ## 3. What is on the page
 
-`index.html` is one scrolling page — **seven sections**, each answering a question the
+`index.html` is one scrolling page — **five sections**, each answering a question the
 page has not already answered:
 
 | # | Section | The question it answers |
 |---|---|---|
 | 1 | **Hero** (navy) | What is this, what does it cost, what do I get each month? |
-| 2 | **Where this starts** (cream) | Why does this matter — what happens if I keep putting it off? |
-| 3 | **How It Works** (navy) | What do I send, what do you do with it, and do you cover my state? |
-| 4 | **Services** (white) | What exactly is included each month — and what about getting started from a mess? |
-| 5 | **Pricing** (cream) | What will I actually pay? |
-| 6 | **FAQ** (white) | The seven objections the page does not answer above. |
-| 7 | **Call to action** (navy) | How do I reach you? |
+| 2 | **Services** (white) | What exactly is included each month — and what about getting started from a mess? |
+| 3 | **Pricing** (cream) | What will I actually pay? |
+| 4 | **FAQ** (white) | The four objections the page does not answer above. |
+| 5 | **Call to action** (navy) | How do I reach you? |
 
-The nav mirrors the four that sell: How It Works · Services · Pricing · FAQ, plus a phone
+The nav mirrors the three that sell: Services · Pricing · FAQ, plus a phone
 button visible at every scroll position.
 
-**Sections alternate** so no two neighbouring bands share a background — navy, cream,
-navy, white, cream, white, navy. If you add or remove a section, keep that going. (When
+**Sections alternate** so no two neighbouring bands share a background — navy, white,
+cream, white, navy. If you add or remove a section, keep that going. (When
 "What happens, in order" was removed, FAQ had to flip from cream to white so it would not
 sit cream-on-cream against Pricing — that is the kind of knock-on to watch for.)
 
 ### The editing rule for this page
 
 The page is deliberately short, and it got there by cutting. **Before adding anything, check
-whether the fact is already stated somewhere above it.** Five sections have been removed:
+whether the fact is already stated somewhere above it.** Seven sections have been removed:
 
 - a stats band whose three figures (`$50` / `50 states` / `100% remote`) were a literal
   copy of the strip in the hero panel;
-- a separate "how it goes wrong" section, now merged into **Where this starts**;
+- a separate "how it goes wrong" section, folded into "Where this starts" — itself later removed;
+- **"Where this starts"** — the "bookkeeping is the work that waits" problem section, removed
+  at the owner's request;
+- **"How It Works"** — the send-documents / what-we-do / nationwide-coverage section, removed
+  at the owner's request. It carried the only statement of the "we started in Utah, we did not
+  stay there" framing — if that story matters, it needs a new home;
 - a separate "beyond the monthly close" section, now the second block inside **Services**,
   under a `.subhead` divider;
 - a **testimonials** section built entirely from placeholder quotes — it carried no
@@ -138,7 +136,7 @@ A hero "capabilities" strip was also dropped: it listed the same four words as t
 Services headings, two screens below.
 
 Some repetition is correct and deliberate. The `tel:` link appears eight times, `$50`
-appears wherever price is relevant, and **"all 50 states" appears eight times** — nationwide
+appears wherever price is relevant, and **"all 50 states" appears five times** — nationwide
 coverage is the single thing a visitor most needs to not miss. Do not thin those out.
 
 ---
@@ -195,13 +193,14 @@ policy), download the two families into `assets/fonts/`, add `@font-face` rules,
 delete the three `<link>` tags in each page's `<head>`.
 
 **Stylesheet sections**, numbered in order: tokens, reset, layout primitives, buttons,
-header, hero, cards, the how-it-works diagram, FAQ, pricing, final CTA, footer,
-back-to-top, legal pages, utilities, print.
+header, hero, cards, FAQ, pricing, final CTA, footer, back-to-top, legal pages,
+utilities, print.
 
 The stylesheet is trimmed alongside the page — the `.stats`, `.quote`/`.quotes`,
-`.hero-capabilities` and `.process`/`.process-item`/`.process-num` rules were all deleted
-when their sections were, rather than left as dead weight. If you bring any of those
-sections back, the styles are recoverable from git history.
+`.hero-capabilities`, `.process`/`.process-item`/`.process-num`, `.path`/`.path-step`
+(Where this starts) and `.arch`/`.zone`/`.node`/`.server`/`.pill-badge` (How It Works)
+rules were all deleted when their sections were, rather than left as dead weight. If you
+bring any of those sections back, the styles are recoverable from git history.
 
 `.subhead` is the one component added for conciseness: it puts a second heading and rule
 inside an existing section, which is what lets **Services** carry both the monthly work and
@@ -236,7 +235,7 @@ than to a single city.
 ## 7. Notes on how it is built
 
 - **One page, anchor navigation.** Nothing stands between a visitor and the phone number.
-  The number appears in the sticky header, the hero, all three pricing buttons, the
+  The number appears in the sticky header, the hero, both pricing buttons, the
   closing call-to-action and the footer — reachable at any scroll position, on any screen.
 - **No contact form**, by choice. Call and email only.
 - **Accessibility.** Skip link, semantic landmarks, labelled sections, visible focus
@@ -258,19 +257,13 @@ The questions live in **two** places in `index.html`: the visible `<details>` bl
 the `FAQPage` JSON-LD block near the bottom of the file. Update both, or the structured
 data will describe a page that no longer exists.
 
-The JSON-LD deliberately carries **five of the seven** questions, and no bracketed
-placeholder text appears anywhere in it — you do not want `[PLACEHOLDER: …]` showing up in
-a Google search result. The split:
-
-- **Two answers are clean** (which tier, Utah) and appear in the JSON-LD word for word.
-- **Three** (taxes, documents, security) appear in the JSON-LD with their trailing
-  placeholder sentence trimmed off, so the structured-data version is a shortened form of
-  what the page shows.
-- **Two are omitted** (accounting software, contracts) because their answers are almost
-  entirely placeholder and there is nothing useful to publish yet.
-
-Once you have filled those answers in, add the missing two to the JSON-LD, and restore the
-trimmed sentences to the three shortened ones so both copies match again.
+Four questions remain: which tier, accounting software, taxes, and contract terms. The
+JSON-LD carries **two of the four** (which tier, taxes) word for word — accounting
+software and contract terms are omitted from the structured data, matching the pattern of
+keeping only clean, complete answers there.
 
 The FAQ is deliberately short. Questions the page answers in the body — what it costs in
-detail, what catch-up work involves — were removed from here rather than asked twice.
+detail, what catch-up work involves — were removed from here rather than asked twice. The
+Utah/nationwide question, the documents question and the security question were dropped
+at the owner's request; nationwide coverage is still stated elsewhere on the page (see the
+list above).
