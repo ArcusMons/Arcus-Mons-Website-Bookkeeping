@@ -51,7 +51,7 @@ Two tiers now, both real prices, split at transaction volume — no placeholders
 |---|---|
 | Starter price | **$75/month, up to 200 transactions — real.** |
 | Full service price | **$125/month, anything over 200 transactions — real.** |
-| Catch-up pricing (the panel below the tiers) | **$50 per month of backlog — real.** |
+| Catch-up pricing (the panel below the tiers) | **$75 per month of backlog — real.** |
 
 ### Elsewhere on `index.html`
 
@@ -113,7 +113,7 @@ sit cream-on-cream against Pricing — that is the kind of knock-on to watch for
 The page is deliberately short, and it got there by cutting. **Before adding anything, check
 whether the fact is already stated somewhere above it.** Seven sections have been removed:
 
-- a stats band whose three figures (`$50` / `50 states` / `100% remote`) were a literal
+- a stats band whose three figures (`$75` / `50 states` / `100% remote`) were a literal
   copy of the strip in the hero panel;
 - a separate "how it goes wrong" section, folded into "Where this starts" — itself later removed;
 - **"Where this starts"** — the "bookkeeping is the work that waits" problem section, removed
@@ -136,7 +136,7 @@ whether the fact is already stated somewhere above it.** Seven sections have bee
 A hero "capabilities" strip was also dropped: it listed the same four words as the
 Services headings, two screens below.
 
-Some repetition is correct and deliberate. The `tel:` link appears eight times, `$50`
+Some repetition is correct and deliberate. The `tel:` link appears eight times, `$75`
 appears wherever price is relevant, and **"all 50 states" appears five times** — nationwide
 coverage is the single thing a visitor most needs to not miss. Do not thin those out.
 

@@ -871,7 +871,7 @@ a, button, summary, [role="button"] {
   letter-spacing: -.02em;
   color: var(--navy-800);
   margin-bottom: .3rem;
-  /* A "$[PLACEHOLDER]" amount is far wider than "$50"; let it break rather
+  /* A "$[PLACEHOLDER]" amount is far wider than "$75"; let it break rather
      than push the card wider than its column. */
   overflow-wrap: anywhere;
 }
