@@ -14,17 +14,17 @@ These are real values, already wired in across every page:
 
 | | |
 |---|---|
-| Phone | **801-633-6487** — displayed as `801-633-6487`, linked as `tel:+18016336487` |
+| Phone | **801-306-0731** — displayed as `801-306-0731`, linked as `tel:+18013060731` |
 | Email | **arcusmons@gmail.com** |
 | Hours | **Monday – Saturday, 8:30 a.m. – 6:00 p.m.** |
 | Service area | **All 50 states** — remote, nationwide |
-| Starting price | **$50 / month** |
+| Starting price | **$75 / month** |
 | Governing law | **Utah** (`terms.html`) |
 
 > **Keep the two phone formats in sync.** The display string and the `tel:` string are
-> deliberately different: `+18016336487` is E.164 — no dashes, no spaces — and that is
+> deliberately different: `+18013060731` is E.164 — no dashes, no spaces — and that is
 > what makes the number tap-to-dial on a phone. If you change the number, change both,
-> plus `+1-801-633-6487` in the structured-data block near the bottom of `index.html`.
+> plus `+1-801-306-0731` in the structured-data block near the bottom of `index.html`.
 
 **Hours appear in four places.** Change them together: the footer Contact column on
 `index.html`, `privacy.html` and `terms.html`; the line under the closing call-to-action
@@ -49,8 +49,8 @@ Two tiers now, both real prices, split at transaction volume — no placeholders
 
 | What | Status |
 |---|---|
-| Starter price | **$50/month, up to 500 transactions — real.** |
-| Full service price | **$100/month, everything over 500 transactions — real.** |
+| Starter price | **$75/month, up to 200 transactions — real.** |
+| Full service price | **$125/month, anything over 200 transactions — real.** |
 | Catch-up pricing (the panel below the tiers) | **$50 per month of backlog — real.** |
 
 ### Elsewhere on `index.html`
@@ -246,7 +246,7 @@ than to a single city.
   for visitors who ask for it.
 - **SEO.** Per-page titles and descriptions, canonical URLs, Open Graph and Twitter cards,
   and JSON-LD structured data describing the business as an `AccountingService` with a
-  United States service area, a `$50/month` offer, opening hours, and the FAQ (which can
+  United States service area, a `$75/month` offer, opening hours, and the FAQ (which can
   earn expandable FAQ results in Google).
 - **Print.** A print stylesheet flattens the dark sections to black-on-white so the page
   does not consume a toner cartridge. Pricing cards and testimonials avoid page breaks.

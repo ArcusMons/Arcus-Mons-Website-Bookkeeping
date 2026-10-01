@@ -576,6 +576,12 @@ a, button, summary, [role="button"] {
 }
 
 .hero .btn-row { margin-bottom: 1.5rem; }
+/* Three buttons share the hero's text column; trimmed so they sit on one line.
+   Wrapping stays on as the fallback so nothing ever overflows. */
+@media (min-width: 481px) {
+  .hero .btn-row { gap: .6rem; }
+  .hero .btn-row > .btn { padding-inline: 1.1rem; font-size: 1rem; white-space: nowrap; }
+}
 
 .hero-reassure {
   font-size: .9375rem;
@@ -831,9 +837,13 @@ a, button, summary, [role="button"] {
 }
 .price-card--featured:hover { border-color: var(--navy-800); }
 
+/* Pinned to the corner, out of the flow, so the featured card's text lines up
+   with the other tiers. */
 .price-flag {
-  align-self: flex-start;
-  margin: 0 0 .9rem;
+  position: absolute;
+  top: clamp(1.5rem, 2.6vw, 2rem);
+  right: clamp(1.5rem, 2.6vw, 2rem);
+  margin: 0;
   padding: .3rem .7rem;
   border-radius: 999px;
   background: var(--navy-800);
