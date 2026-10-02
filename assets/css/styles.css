@@ -1089,6 +1089,7 @@ a, button, summary, [role="button"] {
 }
 .page-header h1 { color: var(--white); margin-bottom: .3em; font-size: clamp(2rem, 4.4vw, 3rem); }
 .page-header p { margin: 0; color: var(--blue-200); }
+.page-header h1:last-child { margin-bottom: 0; }
 
 .prose { max-width: 46rem; }
 .prose h2 {
