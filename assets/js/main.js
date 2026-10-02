@@ -167,4 +167,22 @@
 
     sections.forEach(function (section) { spy.observe(section); });
   }
+
+  /* ------------------------------------------------------------------
+     5. Google Ads conversion — any "Book a consultation" (Calendly) click
+     ------------------------------------------------------------------ */
+  // The conversion action's send_to value, from Google Ads: Goals >
+  // Conversions > (the action) > Tag setup > Event snippet. Empty = off.
+  var CONSULTATION_CONVERSION = 'AW-18416052351/q3EgCMS6xo0dEP_Qus1E';
+
+  document.addEventListener('click', function (event) {
+    if (!CONSULTATION_CONVERSION || typeof window.gtag !== 'function') return;
+    if (!event.target.closest('a[href^="https://calendly.com/arcusmons/"]')) return;
+    // The link opens in a new tab, so this page stays put; beacon transport
+    // still delivers the hit if the visitor closes it straight away.
+    window.gtag('event', 'conversion', {
+      send_to: CONSULTATION_CONVERSION,
+      transport_type: 'beacon'
+    });
+  });
 })();
