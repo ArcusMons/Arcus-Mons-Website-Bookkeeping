@@ -1080,7 +1080,7 @@ a, button, summary, [role="button"] {
 .to-top:hover { background: var(--blue-500); }
 
 /* --------------------------------------------------------------------------
-   13. Legal / content pages
+   13. Legal, content and about pages
    -------------------------------------------------------------------------- */
 .page-header {
   background: var(--navy-800);
@@ -1107,6 +1107,61 @@ a, button, summary, [role="button"] {
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 2.25rem;
+}
+
+/* About page team cards. Both source photos are 2:3 portraits; the 4:3
+   frame keeps each card short enough that photo and bio fit on one laptop
+   screen, and the object-position keeps faces in view. */
+.team {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 860px;
+  margin-inline: auto;
+}
+@media (max-width: 760px) {
+  .team { grid-template-columns: minmax(0, 1fr); max-width: 26rem; }
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.team-photo {
+  margin: 0;
+  background: var(--mist);
+}
+/* The ratio sits on the img, not the figure: the img's 960x1440 attributes
+   would otherwise stretch the figure back to 2:3. */
+.team-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 50% 26%;
+}
+
+.team-body { padding: clamp(1.5rem, 2.6vw, 2rem); }
+.team-body h2 { font-size: clamp(1.5rem, 2.6vw, 1.85rem); margin-bottom: .35rem; }
+.team-role {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--blue-500);
+  margin: 0;
+}
+.team-bio {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 1rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -1162,6 +1217,6 @@ a, button, summary, [role="button"] {
     color: #000 !important;
   }
   .price-flag { background: #fff !important; color: #000 !important; border: 1px solid #000; }
-  .card, .price-card { box-shadow: none; break-inside: avoid; }
+  .card, .price-card, .team-card { box-shadow: none; break-inside: avoid; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }
