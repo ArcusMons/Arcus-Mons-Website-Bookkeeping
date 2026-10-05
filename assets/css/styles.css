@@ -580,7 +580,7 @@ a, button, summary, [role="button"] {
    Wrapping stays on as the fallback so nothing ever overflows. */
 @media (min-width: 481px) {
   .hero .btn-row { gap: .6rem; }
-  .hero .btn-row > .btn { padding-inline: 1.1rem; font-size: 1rem; white-space: nowrap; }
+  .hero .btn-row > .btn { padding-inline: .95rem; font-size: 1rem; white-space: nowrap; }
 }
 
 .hero-reassure {
