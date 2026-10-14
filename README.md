@@ -45,12 +45,13 @@ Search every file for **`[PLACEHOLDER`** to find them. As of the last edit:
 
 ### Pricing (`index.html`, the `#pricing` section)
 
-Two tiers now, both real prices, split at transaction volume — no placeholders left here.
+Three plans, shown as one comparison table (features down the left, ✓ or — per plan).
 
 | What | Status |
 |---|---|
 | Starter price | **$95/month, up to 200 transactions — real.** |
-| Full service price | **$175/month, anything over 200 transactions — real.** |
+| Growth price | **$175/month, 201–500 transactions — real.** |
+| Custom price | **Quoted after a free file review; 500+ transactions or complex books.** |
 | Catch-up pricing (services intro + the panel below the tiers) | **Starts at $95 per month of backlog; firm price after a free file review — real.** |
 
 ### Elsewhere on `index.html`

@@ -793,132 +793,146 @@ a, button, summary, [role="button"] {
 /* --------------------------------------------------------------------------
    9. Pricing
    -------------------------------------------------------------------------- */
-.pricing {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2.4vw, 1.75rem);
-  align-items: stretch;
-  max-width: 46rem;
-  margin-inline: auto;
-}
-/* One column below 900px — but capped and centred, so a single card does not
-   stretch to the full 1160px wrap on a tablet. */
-@media (max-width: 900px) {
-  .pricing {
-    grid-template-columns: minmax(0, 1fr);
-    max-width: 34rem;
-    margin-inline: auto;
-  }
-}
+/* One comparison table: features down the left, a column per plan, a check or
+   a dash in every cell. The same table serves phones, just tighter. */
+.tiers { max-width: 64rem; margin-inline: auto; }
 
-.price-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
+.tier-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
   background: var(--white);
   border: 1px solid var(--rule);
   border-radius: var(--radius-lg);
-  padding: clamp(1.5rem, 2.6vw, 2rem);
   box-shadow: var(--shadow-sm);
-  transition: transform .22s var(--ease), box-shadow .22s var(--ease),
-              border-color .22s var(--ease);
 }
-.price-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--blue-300);
+.tier-table th,
+.tier-table td {
+  padding: .95rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+  vertical-align: middle;
 }
-
-/* The middle card carries the recommendation: a navy edge and a little more
-   lift, rather than a different size — equal heights keep the row scannable. */
-.price-card--featured {
-  border-color: var(--navy-800);
-  box-shadow: var(--shadow-md);
-}
-.price-card--featured:hover { border-color: var(--navy-800); }
-
-/* Pinned to the corner, out of the flow, so the featured card's text lines up
-   with the other tiers. */
-.price-flag {
-  position: absolute;
-  top: clamp(1.5rem, 2.6vw, 2rem);
-  right: clamp(1.5rem, 2.6vw, 2rem);
-  margin: 0;
-  padding: .3rem .7rem;
-  border-radius: 999px;
-  background: var(--navy-800);
-  color: var(--white);
-  font-size: .625rem;
+.tier-table tbody tr:last-child > * { border-bottom: 0; }
+.tier-table .tier-corner { width: 34%; text-align: left; vertical-align: bottom; }
+.tier-corner-label {
+  font-size: .75rem;
   font-weight: 700;
-  letter-spacing: .15em;
+  letter-spacing: .18em;
   text-transform: uppercase;
+  color: var(--muted);
 }
 
-.price-tier {
+/* Plan headers: name, price, period, volume — stacked and aligned across the
+   three columns, so the prices sit on one line. */
+.tier-table thead th {
+  position: relative;
+  padding: 2.5rem 1rem 1.4rem;
+  font-weight: 400;
+  vertical-align: top;
+}
+.tier-table thead th > span { display: block; }
+.tier-name {
   font-size: .75rem;
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--blue-500);
-  margin-bottom: .6rem;
+  margin-bottom: .55rem;
 }
-
-.price-amount {
+.tier-price {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw, 3.1rem);
+  font-size: clamp(2.1rem, 4.2vw, 2.9rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -.02em;
   color: var(--navy-800);
-  margin-bottom: .3rem;
-  /* A "$[PLACEHOLDER]" amount is far wider than "$95"; let it break rather
-     than push the card wider than its column. */
-  overflow-wrap: anywhere;
 }
-.price-amount .currency {
+.tier-price .currency {
   font-size: .5em;
   vertical-align: .55em;
   margin-right: .06em;
   font-weight: 600;
 }
-
-.price-period {
-  font-size: .875rem;
+/* "Quoted" is a word, not a number: smaller, and boxed to the numerals' line
+   height so the period and volume lines still align across the row. */
+.tier-price--quoted {
+  font-size: clamp(1.5rem, 2.8vw, 1.9rem);
+  line-height: clamp(2.1rem, 4.2vw, 2.9rem);
+}
+.tier-period {
+  font-size: .8125rem;
   letter-spacing: .04em;
   color: var(--muted);
-  margin-bottom: 1.1rem;
+  margin-top: .35rem;
+}
+.tier-volume {
+  margin-top: .85rem;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--navy-700);
 }
 
-.price-desc {
+/* Sits on the column's top edge, out of the flow, so Starter's header lines
+   up with the other two. */
+.tier-flag {
+  position: absolute;
+  top: .6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: .2rem .6rem;
+  border-radius: 999px;
+  background: var(--navy-800);
+  color: var(--white);
+  font-size: .5625rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tier-table tbody th {
+  text-align: left;
   font-size: .9375rem;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 1.25rem;
+  font-weight: 600;
+  color: var(--navy-800);
 }
+.tier-table td svg { display: inline-block; color: var(--blue-500); vertical-align: middle; }
+.tier-no { color: #a3adb8; font-size: 1.1rem; }
 
-.price-features {
-  list-style: none;
-  display: grid;
-  gap: .7rem;
-  margin: 0 0 1.75rem;
-}
-.price-features li {
-  display: flex;
-  gap: .65rem;
-  align-items: flex-start;
-  font-size: .9375rem;
-  line-height: 1.5;
-}
-.price-features svg {
-  flex: 0 0 auto;
-  margin-top: .3rem;
-  color: var(--blue-500);
-}
+/* Phones only: volume moves out of the narrow headers into its own row. */
+.tier-volume-row { display: none; }
 
-/* margin-top:auto pins the button to the bottom of the tallest card, so the
-   three calls to action line up however long the feature lists run. */
-.price-foot { margin-top: auto; }
-.price-foot .btn { width: 100%; }
+/* The recommended plan: a light tint down its whole column. */
+.tier-table .is-featured { background: rgba(47, 95, 135, .055); }
+
+.tier-cta {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+}
+.tier-cta p { margin-bottom: 1rem; font-size: .9875rem; }
+
+@media (max-width: 640px) {
+  .tier-table th,
+  .tier-table td { padding: .8rem .35rem; }
+  .tier-table tbody th { padding-left: .85rem; font-size: .8125rem; line-height: 1.35; }
+  .tier-table .tier-corner { width: 37%; }
+  .tier-table thead th { padding: 1.6rem .35rem 1.1rem; }
+  .tier-name { font-size: .625rem; letter-spacing: .12em; }
+  .tier-price { font-size: 1.6rem; }
+  .tier-price--quoted { font-size: .95rem; line-height: 1.6rem; }
+  .tier-table thead th > span { overflow-wrap: normal; }
+  .tier-corner-label, .tier-volume { display: none !important; }
+  .tier-volume-row { display: table-row; }
+  .tier-volume-row td { font-size: .75rem; font-weight: 600; line-height: 1.3; color: var(--navy-700); }
+  .tier-period { font-size: .6875rem; letter-spacing: 0; }
+  .tier-volume { font-size: .6875rem; margin-top: .6rem; }
+  .tier-table td svg { width: 16px; height: 16px; }
+  .tier-flag { font-size: .5rem; letter-spacing: .08em; padding: .15rem .4rem; top: .45rem; }
+  .tier-cta .btn { width: 100%; }
+}
 
 .price-aside {
   margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
@@ -1217,7 +1231,7 @@ a, button, summary, [role="button"] {
   .hero-deliverables li {
     color: #000 !important;
   }
-  .price-flag { background: #fff !important; color: #000 !important; border: 1px solid #000; }
-  .card, .price-card, .team-card { box-shadow: none; break-inside: avoid; }
+  .tier-flag { background: #fff !important; color: #000 !important; border: 1px solid #000; }
+  .card, .tier-table, .team-card { box-shadow: none; break-inside: avoid; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
 }

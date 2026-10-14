@@ -29,8 +29,8 @@
   written two ways on purpose: 801-306-0731 for display, and +18013060731 in
   every tel: link (E.164 — no dashes), which is what makes it tap-to-dial.
 
-  Pricing: two tiers, both real prices — $95 Starter, $175 Full Service, split
-  at 200 transactions a month.
+  Pricing: three plans in one comparison table — $95 Starter (up to 200
+  transactions a month), $175 Growth (201–500), Custom (quoted; 500+ or complex).
 
   Six sections, each earning its place — see README §3. Before adding a
   new one, check the fact is not already stated somewhere above.
@@ -67,7 +67,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap">
 
-<link rel="stylesheet" href="assets/css/styles.css?v=20261005">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261014">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 
@@ -344,84 +344,92 @@
       </p>
     </div>
 
-    <div class="pricing reveal">
+    <div class="tiers reveal">
+      <table class="tier-table">
+        <caption class="visually-hidden">What each plan includes</caption>
+        <thead>
+          <tr>
+            <td class="tier-corner"><span class="tier-corner-label">What&rsquo;s included</span></td>
+            <th scope="col" class="is-featured">
+              <span class="tier-flag">Most popular</span>
+              <span class="tier-name">Starter</span>
+              <span class="tier-price"><span class="currency">$</span>95</span>
+              <span class="tier-period">per month</span>
+              <span class="tier-volume">Up to 200 transactions a month</span>
+            </th>
+            <th scope="col">
+              <span class="tier-name">Growth</span>
+              <span class="tier-price"><span class="currency">$</span>175</span>
+              <span class="tier-period">per month</span>
+              <span class="tier-volume">201&ndash;500 transactions a month</span>
+            </th>
+            <th scope="col">
+              <span class="tier-name">Custom</span>
+              <span class="tier-price tier-price--quoted">Quoted</span>
+              <span class="tier-period">after a free review</span>
+              <span class="tier-volume">500+ transactions, or complex books</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        <tr class="tier-volume-row">
+          <th scope="row">Transactions a month</th>
+          <td class="is-featured">Up to 200</td>
+          <td>201&ndash;500</td>
+          <td>500+ or complex</td>
+        </tr>
+        <tr>
+          <th scope="row">Categorization and reconciliation</th>
+          <td class="is-featured"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Profit &amp; Loss, balance sheet and cash flow</th>
+          <td class="is-featured"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Year-end package for your CPA</th>
+          <td class="is-featured"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Email and phone support</th>
+          <td class="is-featured"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Payables and receivables tracking</th>
+          <td class="is-featured"><span class="tier-no" aria-hidden="true">&mdash;</span><span class="visually-hidden">Not included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Payroll and sales tax recorded</th>
+          <td class="is-featured"><span class="tier-no" aria-hidden="true">&mdash;</span><span class="visually-hidden">Not included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+        </tr>
+        <tr>
+          <th scope="row">Inventory, multiple entities</th>
+          <td class="is-featured"><span class="tier-no" aria-hidden="true">&mdash;</span><span class="visually-hidden">Not included</span></td>
+          <td><span class="tier-no" aria-hidden="true">&mdash;</span><span class="visually-hidden">Not included</span></td>
+          <td><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span class="visually-hidden">Included</span></td>
+        </tr>
+        </tbody>
+      </table>
 
-      <article class="price-card price-card--featured">
-        <p class="price-flag">Most popular</p>
-        <p class="price-tier">Starter</p>
-        <p class="price-amount"><span class="currency">$</span>95</p>
-        <p class="price-period">per month</p>
-        <p class="price-desc">
-          For a new or straightforward business with light monthly volume.
-        </p>
-        <ul class="price-features">
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Monthly transaction categorization</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Up to 200 transactions a month</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Profit &amp; Loss and balance sheet every month</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Year-end books ready for your tax preparer</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Email and phone support</span>
-          </li>
-        </ul>
-        <div class="price-foot">
-          <a class="btn btn--primary" href="https://calendly.com/arcusmons/30min" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            Book a FREE consultation
-          </a>
-        </div>
-      </article>
-
-      <article class="price-card">
-        <p class="price-tier">Full service</p>
-        <p class="price-amount"><span class="currency">$</span>175</p>
-        <p class="price-period">per month</p>
-        <p class="price-desc">
-          For a business that would rather hand over the whole back office and get
-          its evenings back.
-        </p>
-        <ul class="price-features">
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Monthly transaction categorization</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Anything over 200 transactions a month</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Profit &amp; Loss and balance sheet every month</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Year-end books ready for your tax preparer</span>
-          </li>
-          <li>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
-            <span>Email and phone support</span>
-          </li>
-        </ul>
-        <div class="price-foot">
-          <a class="btn btn--primary" href="https://calendly.com/arcusmons/30min" target="_blank" rel="noopener">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-            Book a FREE consultation
-          </a>
-        </div>
-      </article>
-
+      <div class="tier-cta">
+        <p>Not sure which plan fits? We will tell you on a free call.</p>
+        <a class="btn btn--primary btn--lg" href="https://calendly.com/arcusmons/30min" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          Book a FREE consultation
+        </a>
+      </div>
     </div>
 
     <div class="price-aside reveal">
@@ -452,7 +460,7 @@
       <details class="faq-item">
         <summary>Which tier will I be in?<span class="faq-icon" aria-hidden="true"></span></summary>
         <div class="faq-answer">
-          <p>Volume decides it. Up to 200 transactions a month sits comfortably in Starter. Past that, you are in Full Service.</p>
+          <p>Volume decides it. Up to 200 transactions a month is Starter, and 201 to 500 is Growth. Above 500, or with inventory or multiple entities, we quote a Custom price after a free review of your file.</p>
         </div>
       </details>
 
@@ -598,7 +606,7 @@
         "addressRegion": "UT",
         "addressCountry": "US"
       },
-      "priceRange": "$95-$175 per month",
+      "priceRange": "From $95 per month",
       "currenciesAccepted": "USD",
       "areaServed": {
         "@type": "Country",
@@ -667,7 +675,7 @@
           {
             "@type": "Offer",
             "name": "Starter",
-            "description": "Monthly bookkeeping for up to 200 transactions a month: transaction categorization, Profit & Loss and balance sheet every month, year-end books ready for your tax preparer, email and phone support.",
+            "description": "Monthly bookkeeping for up to 200 transactions a month: categorization and reconciliation; Profit & Loss, balance sheet and cash flow; year-end package for your CPA; email and phone support.",
             "priceSpecification": {
               "@type": "UnitPriceSpecification",
               "price": "95",
@@ -678,14 +686,20 @@
           },
           {
             "@type": "Offer",
-            "name": "Full Service",
-            "description": "Monthly bookkeeping for anything over 200 transactions a month: transaction categorization, Profit & Loss and balance sheet every month, year-end books ready for your tax preparer, email and phone support.",
+            "name": "Growth",
+            "description": "Monthly bookkeeping for 201 to 500 transactions a month: categorization and reconciliation; Profit & Loss, balance sheet and cash flow; year-end package for your CPA; email and phone support; payables and receivables tracking; payroll and sales tax recorded.",
             "priceSpecification": {
               "@type": "UnitPriceSpecification",
               "price": "175",
               "priceCurrency": "USD",
               "unitText": "MONTH"
             },
+            "areaServed": "US"
+          },
+          {
+            "@type": "Offer",
+            "name": "Custom",
+            "description": "Monthly bookkeeping for more than 500 transactions a month or complex books, including inventory and multiple entities: everything in Growth. Priced after a free review of your file.",
             "areaServed": "US"
           },
           {
@@ -817,7 +831,7 @@
           "name": "Which tier will I be in?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Volume decides it. Up to 200 transactions a month sits comfortably in Starter. Past that, you are in Full Service."
+            "text": "Volume decides it. Up to 200 transactions a month is Starter, and 201 to 500 is Growth. Above 500, or with inventory or multiple entities, we quote a Custom price after a free review of your file."
           }
         },
         {
