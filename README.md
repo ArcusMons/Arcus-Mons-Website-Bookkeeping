@@ -18,7 +18,7 @@ These are real values, already wired in across every page:
 | Email | **arcusmons@gmail.com** |
 | Hours | **Monday – Sunday, 8:00 a.m. – 8:00 p.m. MST** |
 | Service area | **All 50 states** — remote, nationwide |
-| Starting price | **$75 / month** |
+| Starting price | **$95 / month** |
 | Governing law | **Utah** (`terms.html`) |
 
 > **Keep the two phone formats in sync.** The display string and the `tel:` string are
@@ -49,9 +49,9 @@ Two tiers now, both real prices, split at transaction volume — no placeholders
 
 | What | Status |
 |---|---|
-| Starter price | **$75/month, up to 200 transactions — real.** |
-| Full service price | **$125/month, anything over 200 transactions — real.** |
-| Catch-up pricing (the panel below the tiers) | **$75 per month of backlog — real.** |
+| Starter price | **$95/month, up to 200 transactions — real.** |
+| Full service price | **$175/month, anything over 200 transactions — real.** |
+| Catch-up pricing (services intro + the panel below the tiers) | **Starts at $95 per month of backlog; firm price after a free file review — real.** |
 
 ### Elsewhere on `index.html`
 
@@ -68,9 +68,10 @@ period and the security-specifics sentence were all removed rather than filled i
 
 ### Everywhere
 
-- `www.arcusmons.com` — the domain. Find and replace across `index.html`, `privacy.html`,
-  `terms.html`, `sitemap.xml` and `robots.txt` once the real domain is registered. It is
-  used for canonical links, Open Graph / Twitter share URLs and the structured data.
+- `https://arcusmons.com` — the domain, **without www** (www.arcusmons.com redirects to
+  it, so canonical links must not point at www). Used across `index.html`, `about.html`,
+  `privacy.html`, `terms.html`, `sitemap.xml` and `robots.txt` for canonical links, Open
+  Graph / Twitter share URLs and the structured data.
 
 > **The legal pages are templates, not legal advice.** Have counsel read `privacy.html`
 > and `terms.html` before launch. Bookkeeping means holding other people's financial
@@ -89,22 +90,23 @@ time, because those were not supplied — if you want them, add them.
 
 ## 3. What is on the page
 
-`index.html` is one scrolling page — **five sections**, each answering a question the
+`index.html` is one scrolling page — **six sections**, each answering a question the
 page has not already answered:
 
 | # | Section | The question it answers |
 |---|---|---|
 | 1 | **Hero** (navy) | What is this, what does it cost, what do I get each month? |
 | 2 | **Services** (white) | What exactly is included each month — and what about getting started from a mess? |
-| 3 | **Pricing** (cream) | What will I actually pay? |
-| 4 | **FAQ** (white) | The four objections the page does not answer above. |
-| 5 | **Call to action** (navy) | How do I reach you? |
+| 3 | **Why owners trust us** (mist) | Is my data safe, do I keep my books, and who are you? |
+| 4 | **Pricing** (cream) | What will I actually pay? |
+| 5 | **FAQ** (white) | The four objections the page does not answer above. |
+| 6 | **Call to action** (navy) | How do I reach you? |
 
-The nav mirrors the three that sell: Services · Pricing · FAQ, plus a phone
-button visible at every scroll position.
+The nav mirrors the three that sell: Services · Pricing · FAQ, then About Us (its own
+page), plus the "Book a FREE consultation" and phone buttons at every scroll position.
 
 **Sections alternate** so no two neighbouring bands share a background — navy, white,
-cream, white, navy. If you add or remove a section, keep that going. (When
+mist, cream, white, navy. If you add or remove a section, keep that going. (When
 "What happens, in order" was removed, FAQ had to flip from cream to white so it would not
 sit cream-on-cream against Pricing — that is the kind of knock-on to watch for.)
 
@@ -113,7 +115,7 @@ sit cream-on-cream against Pricing — that is the kind of knock-on to watch for
 The page is deliberately short, and it got there by cutting. **Before adding anything, check
 whether the fact is already stated somewhere above it.** Seven sections have been removed:
 
-- a stats band whose three figures (`$75` / `50 states` / `100% remote`) were a literal
+- a stats band whose three figures (`$95` / `50 states` / `100% remote`) were a literal
   copy of the strip in the hero panel;
 - a separate "how it goes wrong" section, folded into "Where this starts" — itself later removed;
 - **"Where this starts"** — the "bookkeeping is the work that waits" problem section, removed
@@ -136,7 +138,7 @@ whether the fact is already stated somewhere above it.** Seven sections have bee
 A hero "capabilities" strip was also dropped: it listed the same four words as the
 Services headings, two screens below.
 
-Some repetition is correct and deliberate. The `tel:` link appears eight times, `$75`
+Some repetition is correct and deliberate. The `tel:` link appears eight times, `$95`
 appears wherever price is relevant, and **"all 50 states" appears five times** — nationwide
 coverage is the single thing a visitor most needs to not miss. Do not thin those out.
 
@@ -246,7 +248,7 @@ than to a single city.
   for visitors who ask for it.
 - **SEO.** Per-page titles and descriptions, canonical URLs, Open Graph and Twitter cards,
   and JSON-LD structured data describing the business as an `AccountingService` with a
-  United States service area, a `$75/month` offer, opening hours, and the FAQ (which can
+  United States service area, a `$95/month` offer, opening hours, and the FAQ (which can
   earn expandable FAQ results in Google).
 - **Print.** A print stylesheet flattens the dark sections to black-on-white so the page
   does not consume a toner cartridge. Pricing cards and testimonials avoid page breaks.
