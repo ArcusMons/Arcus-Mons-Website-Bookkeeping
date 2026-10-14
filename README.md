@@ -52,7 +52,7 @@ Three plans, shown as one comparison table (features down the left, ✓ or — p
 | Starter price | **$95/month, up to 200 transactions — real.** |
 | Growth price | **$175/month, 201–500 transactions — real.** |
 | Custom price | **Quoted after a free file review; 500+ transactions or complex books.** |
-| Catch-up pricing (services intro + the panel below the tiers) | **Starts at $95 per month of backlog; firm price after a free file review — real.** |
+| Catch-up pricing (services intro + the panel below the tiers) | **Flat $95 per month of backlog; total confirmed after a free file review — real.** |
 
 ### Elsewhere on `index.html`
 
