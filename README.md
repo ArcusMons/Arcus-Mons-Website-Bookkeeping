@@ -15,7 +15,7 @@ These are real values, already wired in across every page:
 | | |
 |---|---|
 | Phone | **801-306-0731** — displayed as `801-306-0731`, linked as `tel:+18013060731` |
-| Email | **arcusmons@gmail.com** |
+| Email | **bookkeeping@arcusmons.com** |
 | Hours | **Monday – Sunday, 8:00 a.m. – 8:00 p.m. MST** |
 | Service area | **All 50 states** — remote, nationwide |
 | Starting price | **$95 / month** |
