@@ -56,11 +56,14 @@
     box-shadow: var(--shadow-sm);
     overflow: hidden;
   }
-  /* Starting height before Calendly reports its real height. Phones stack
-     the calendar, so they need more room than wide screens. */
-  .booking .calendly-inline-widget { min-width: 0; height: 1050px; }
-  @media (min-width: 1000px) {
-    .booking .calendly-inline-widget { height: 720px; }
+  /* Fixed height, tall enough for the whole Calendly survey (measured at
+     about 1,500-1,600px) so it never scrolls inside the box. Calendly's
+     data-resize option can't be used: this routing form reports its height
+     as 2px and the box collapses. If the survey gains or loses questions,
+     adjust these numbers. Narrow phones wrap more text, so they get more. */
+  .booking .calendly-inline-widget { min-width: 0; height: 1720px; }
+  @media (min-width: 600px) {
+    .booking .calendly-inline-widget { height: 1620px; }
   }
   .booking-fallback { padding: 2rem; margin: 0; text-align: center; }
   .booking-section .section-note a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
@@ -119,11 +122,9 @@
 <section class="section section--cream booking-section" id="book" aria-label="Booking calendar">
   <div class="wrap">
     <div class="booking">
-      <!-- Calendly inline widget begin.
-           data-resize="true" lets Calendly grow the box to fit the calendar,
-           so there is no scroll bar inside it. Starting heights are set in
-           the <style> block in <head>. -->
-      <div class="calendly-inline-widget" data-url="https://calendly.com/d/d23w-h8h-fmf?hide_gdpr_banner=1" data-resize="true"></div>
+      <!-- Calendly inline widget begin. The box height is set in the
+           <style> block in <head>. -->
+      <div class="calendly-inline-widget" data-url="https://calendly.com/d/d23w-h8h-fmf?hide_gdpr_banner=1"></div>
       <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       <!-- Calendly inline widget end -->
 
