@@ -128,6 +128,35 @@
       <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       <!-- Calendly inline widget end -->
 
+      <script>
+        /* Fit the box to Calendly's content where Calendly reports it
+           correctly. The survey step reports nonsense heights (2px, 124px),
+           so anything under MIN_TRUSTED is ignored and the box keeps the
+           fixed survey height from the <style> block. Taller reports (the
+           calendar and confirmation steps) resize the box to fit. */
+        (function () {
+          var MIN_TRUSTED = 500;
+          var box = document.querySelector('.booking .calendly-inline-widget');
+          if (!box) return;
+
+          window.addEventListener('message', function (event) {
+            if (event.origin !== 'https://calendly.com') return;
+            var data = event.data;
+            if (!data || data.event !== 'calendly.page_height' || !data.payload) return;
+
+            var height = parseInt(data.payload.height, 10);
+            if (!(height >= MIN_TRUSTED)) return;
+
+            box.style.height = height + 'px';
+            // If the next step is shorter and the visitor was scrolled down
+            // to the Submit button, bring the top of the box back into view.
+            if (box.getBoundingClientRect().top < 0) {
+              box.scrollIntoView({ block: 'start' });
+            }
+          });
+        })();
+      </script>
+
       <noscript>
         <p class="booking-fallback">
           The calendar needs JavaScript.
