@@ -185,4 +185,29 @@
       transport_type: 'beacon'
     });
   });
+
+  /* ------------------------------------------------------------------
+     6. Completed booking in an embedded Calendly calendar (book.html)
+     ------------------------------------------------------------------ */
+  // Calendly's inline widget posts "calendly.event_scheduled" to this page
+  // once a visitor finishes booking. That fires:
+  //   - Google Analytics: a "generate_lead" event (method: calendly_embed)
+  //   - Google Ads: the same consultation conversion as the button clicks
+  //     above. To count bookings separately, create a second conversion
+  //     action in Google Ads and put its send_to value here instead.
+  var BOOKING_CONVERSION = CONSULTATION_CONVERSION;
+
+  window.addEventListener('message', function (event) {
+    if (event.origin !== 'https://calendly.com') return;
+    if (!event.data || event.data.event !== 'calendly.event_scheduled') return;
+    if (typeof window.gtag !== 'function') return;
+
+    window.gtag('event', 'generate_lead', {
+      method: 'calendly_embed',
+      page_path: window.location.pathname
+    });
+    if (BOOKING_CONVERSION) {
+      window.gtag('event', 'conversion', { send_to: BOOKING_CONVERSION });
+    }
+  });
 })();
